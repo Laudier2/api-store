@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon ./src/index.ts",
-    "dev:2": "node ./src/server.ts",
-    "start": "pm2 start ./dist/src/index.js --watch",
-    "stop": "pm2 stop ./dist/src/index.js --watch",
-    "build": "tsc",
+    "dev:2": "node --trace-warnings ./src/index.ts",
+    "start": "node --trace-warnings ./dist/index.js",
+    "stop": "pm2 stop ./dist/index.js",
+    "build": "rm -r ./dist && tsc",
     "test": "jest --watch"
   },
   "dependencies": {
