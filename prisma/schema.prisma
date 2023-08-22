@@ -19,7 +19,7 @@ model User {
   home       String
   state      String
   cep        String
-  number     Decimal
+  number     String
   created_at DateTime @default(now())
   update_at  DateTime @default(now())
 
