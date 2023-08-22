@@ -29,9 +29,9 @@ export class controllerUpdate {
       }
     })
 
-    if (!userExists) {
+    if (userExists === email) {
       return response.status(400).json({
-        msg: `Você não pode autera o email: ${email}! Somente os outros dados.`
+        msg: `Você não pode usar esse email: ${userExists}! porque ele ja esta ja esta cadastrado!.`
       })
     }
 
