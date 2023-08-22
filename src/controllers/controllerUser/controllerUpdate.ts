@@ -23,15 +23,15 @@ export class controllerUpdate {
 
     const cryptPass = await bcrypt.hash(password, 8)
 
-    const userExists = await prisma.user.findFirst({
+    const userExists = await prisma.user.findUnique({
       where: {
         email: email
       }
     })
 
-    if (userExists === email) {
+    if (userExists) {
       return response.status(400).json({
-        msg: `Você não pode usar esse email: ${userExists}! porque ele ja esta ja esta cadastrado!.`
+        msg: `O email ${email} já existe!  E lembre-se que, todos os campos tem que ser string ok!`
       })
     }
 
@@ -97,6 +97,10 @@ export class controllerUpdate {
       }
     })
 
-    return response.status(201).json(user)
+    try {
+      return response.status(201).json(user)
+    } catch (error) {
+      throw new Error(`Você não pode usar esse email: ${email}! porque ele ja esta sendo usado por outro usuario, se for seu entre na conta!.`)
+    }
   }
 }
