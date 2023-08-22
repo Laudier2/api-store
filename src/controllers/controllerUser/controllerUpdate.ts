@@ -25,7 +25,6 @@ export class controllerUpdate {
 
     const userExists = await prisma.user.findFirst({
       where: {
-        id: id,
         email: email
       }
     })
