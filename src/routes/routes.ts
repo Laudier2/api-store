@@ -1,6 +1,8 @@
 import { Router } from "express";
 import { CreateProductController } from "../controllers/CreateProductController";
 import { CreateUpdateProduct } from "../controllers/CreateUpdateProduct";
+import { controllerProductDelete } from "../controllers/CreateProductDelete";
+import { controllerCategoryDelete } from "../controllers/CreateCategoryDelete";
 import { FindCategoryController } from "../controllers/FindCategoryController";
 import { controllerProductCategory, controllerProductId, FindProductController } from "../controllers/FindProductController";
 import { CreateProductCategoryController } from "../controllers/CreateProductCategoryController";
@@ -20,8 +22,10 @@ const router = Router();//
 
 /* ============================== OBJETO CRIADOS PARA ROTAS ====================== */
 const createProduct = new CreateProductController();
+const createProductDel = new controllerProductDelete();
 const createUpadate = new CreateUpdateProduct();
 const createCategory = new CreateCategoryController();
+const createCategoryDel = new controllerCategoryDelete();
 const createCategoryUpdate = new CreateCategoryUpdate();
 const createProductCategory = new CreateProductCategoryController();
 const createProductCategoryExist = new CreateProductWithExistCategory();
@@ -35,6 +39,7 @@ const findProductCategoryId = new controllerProductId();
 /*=================================== ROTA DE PRODUCT =============================*/
 
 router.post("/product", createProduct.handle);
+router.delete("/product/:id", createProductDel.handle);
 router.put("/product", createUpadate.handle);
 router.get("/product", findProduct.handle);
 router.get("/productcategory", findProductCategory.handle);
@@ -42,6 +47,7 @@ router.get("/productcategoryid/:id", findProductCategoryId.handle);
 
 /*=================================== ROTA DE CATEGORY =============================*/
 router.post("/category", createCategory.handle);
+router.delete("/category/:id", createCategoryDel.handle);
 router.put("/category", createCategoryUpdate.handle);
 router.post("/categoryproduct", createProductCategory.handle);
 router.post("/productwithcategory", createProductCategoryExist.handle);
