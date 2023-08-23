@@ -5,6 +5,7 @@ import { FindCategoryController } from "../controllers/FindCategoryController";
 import { controllerProductCategory, controllerProductId, FindProductController } from "../controllers/FindProductController";
 import { CreateProductCategoryController } from "../controllers/CreateProductCategoryController";
 import { CreateCategoryController } from "../controllers/CreateCategoryController";
+import { CreateCategoryUpdate } from "../controllers/CreateUpdateCategory";
 import { CreateProductWithExistCategory } from "../controllers/CreateProductWithExistCategory";
 import { CreateProductWithExistCategoryPut } from "../controllers/ControllerProductCategoryPut";
 import { ControllerCreate } from "../controllers/controllerUser/controllerCreate";
@@ -21,6 +22,7 @@ const router = Router();//
 const createProduct = new CreateProductController();
 const createUpadate = new CreateUpdateProduct();
 const createCategory = new CreateCategoryController();
+const createCategoryUpdate = new CreateCategoryUpdate();
 const createProductCategory = new CreateProductCategoryController();
 const createProductCategoryExist = new CreateProductWithExistCategory();
 const createProductCategoryExistPut = new CreateProductWithExistCategoryPut();
@@ -40,6 +42,7 @@ router.get("/productcategoryid/:id", findProductCategoryId.handle);
 
 /*=================================== ROTA DE CATEGORY =============================*/
 router.post("/category", createCategory.handle);
+router.put("/category", createCategoryUpdate.handle);
 router.post("/categoryproduct", createProductCategory.handle);
 router.post("/productwithcategory", createProductCategoryExist.handle);
 router.put("/productwithcategoryput", createProductCategoryExistPut.handle);
