@@ -35,16 +35,16 @@ model Category {
 }
 
 model products {
-  id                  String                @id
+  id                  String                @id @default(uuid())
   name                String
   bar_code            String                @unique
-  price               Decimal
+  price               String
   image               String[]
   size                String[]
   color               String[]
   slug                String                @unique
   description         String
-  quantity            Decimal
+  quantity            String
   created_at          DateTime              @default(now())
   products_categories products_categories[]
 }

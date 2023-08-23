@@ -64,7 +64,6 @@ export class CreateProductController {
 
     const product = await prisma.products.create({
       data: {
-        id: id,
         name,
         price,
         bar_code,
