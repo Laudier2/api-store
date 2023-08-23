@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient()
 
-export class CreateProductController {
+export class CreateUpdateProduct {
   async handle(request: Request, response: Response) {
     const {
       id,
@@ -23,7 +23,7 @@ export class CreateProductController {
       }
     })
 
-    if (barcodeExists) {
+    if (barcodeExists && id !== barcodeExists.id) {
       return response.status(400).json({
         msg: `Esse bar_code: ${bar_code} já estar cadastrado em outro produto, tente outro!`
       })
@@ -35,7 +35,7 @@ export class CreateProductController {
       }
     })
 
-    if (slugExists) {
+    if (slugExists && id !== slugExists.id) {
       return response.status(400).json({
         msg: `Esse slug: ${slug} já estar cadastrado em outro produto, tente outro!`
       })
@@ -74,7 +74,10 @@ export class CreateProductController {
       })
     }
 
-    const product = await prisma.products.create({
+    const product = await prisma.products.update({
+      where: {
+        id: id,
+      },
       data: {
         name,
         price,

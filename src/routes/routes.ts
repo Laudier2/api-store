@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { CreateProductController } from "../controllers/CreateProductController";
+import { CreateUpdateProduct } from "../controllers/CreateUpdateProduct";
 import { FindCategoryController } from "../controllers/FindCategoryController";
 import { controllerProductCategory, controllerProductId, FindProductController } from "../controllers/FindProductController";
 import { CreateProductCategoryController } from "../controllers/CreateProductCategoryController";
@@ -18,6 +19,7 @@ const router = Router();//
 
 /* ============================== OBJETO CRIADOS PARA ROTAS ====================== */
 const createProduct = new CreateProductController();
+const createUpadate = new CreateUpdateProduct();
 const createCategory = new CreateCategoryController();
 const createProductCategory = new CreateProductCategoryController();
 const createProductCategoryExist = new CreateProductWithExistCategory();
@@ -31,6 +33,7 @@ const findProductCategoryId = new controllerProductId();
 /*=================================== ROTA DE PRODUCT =============================*/
 
 router.post("/product", createProduct.handle);
+router.put("/product", createUpadate.handle);
 router.get("/product", findProduct.handle);
 router.get("/productcategory", findProductCategory.handle);
 router.get("/productcategoryid/:id", findProductCategoryId.handle);
