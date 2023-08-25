@@ -16,13 +16,13 @@ import { CreateProductWithExistCategory } from "../controllers/products/CreatePr
 import { CreateProductWithExistCategoryPut } from "../controllers/products/ControllerProductCategoryPut";
 
 //============== importação de class de controller de usuarios =================
-import { ControllerCreate } from "../controllers/users/controllerCreate";
-import { ControllerFind } from "../controllers/users/controllerFind";
-import { controllerUpdate } from "../controllers/users/controllerUpdate";
-import { controllerDelete } from "../controllers/users/controllerDelete";
+import { ControllerCreate } from "../controllers/users/controllerCreateUser";
+import { ControllerFind } from "../controllers/users/controllerFindUser";
+import { controllerUpdate } from "../controllers/users/controllerUpdateUser";
+import { controllerDelete } from "../controllers/users/controllerDeleteUser";
 import { ControllerAuth } from "../controllers/users/controllerAuth";
 import { ControllerLogin } from "../controllers/users/controllerLogin";
-import { UserParamesId } from "../controllers/users/controllerParamesId";
+import { UserParamesId } from "../controllers/users/controllerParamesIdFindUser";
 
 const router = Router();//
 

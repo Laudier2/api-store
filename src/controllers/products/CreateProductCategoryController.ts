@@ -35,6 +35,8 @@ export class CreateProductCategoryController {
       },
     });
 
+    console.log(productCategory)
+
     return response.json(productCategory);
   }
 }
