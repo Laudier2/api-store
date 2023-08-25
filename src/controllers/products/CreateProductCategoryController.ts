@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { prismaClient } from "../database/prismaClient";
+import { prisma } from "../../prisma_Client_Orm/prismaClient";
 
 export class CreateProductCategoryController {
   async handle(request: Request, response: Response) {
@@ -27,7 +27,7 @@ export class CreateProductCategoryController {
       })
     }
 
-    const productCategory = await prismaClient.products_categories.create({
+    const productCategory = await prisma.products_categories.create({
       data: {
         id: id,
         id_category,

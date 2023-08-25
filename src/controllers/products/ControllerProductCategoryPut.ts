@@ -1,44 +1,19 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient()
+import { prisma } from "../../prisma_Client_Orm/prismaClient";
+import { AppError } from "../../err/AppErros";
 
-export class CreateProductController {
+export class CreateProductWithExistCategoryPut {
   async handle(request: Request, response: Response) {
-    const {
-      id,
-      name,
-      price,
-      bar_code,
-      size,
-      color,
-      description,
-      image,
-      quantity,
-      slug
-    } = request.body;
+    const { id, name, home, price, bar_code, color, size, quantity, description, image, slug } = request.body;
 
-    const barcodeExists = await prisma.products.findUnique({
+    const userExists = await prisma.products.findUnique({
       where: {
-        bar_code: bar_code
+        id: id
       }
     })
 
-    if (barcodeExists) {
-      return response.status(400).json({
-        msg: `Esse bar_code: ${bar_code} já estar cadastrado em outro produto, tente outro!`
-      })
-    }
-
-    const slugExists = await prisma.products.findUnique({
-      where: {
-        slug: slug
-      }
-    })
-
-    if (slugExists) {
-      return response.status(400).json({
-        msg: `Esse slug: ${slug} já estar cadastrado em outro produto, tente outro!`
-      })
+    if (!userExists) {
+      throw new AppError(`Esse id: ${id} não estar cadastrado, tente outro!`)
     }
 
 
@@ -51,6 +26,7 @@ export class CreateProductController {
       typeof quantity === 'number' ||
       typeof description === 'number' ||
       typeof slug === 'number' ||
+      typeof home === 'number' ||
       typeof image === 'number'
     ) {
       return response.status(500).json({
@@ -67,6 +43,7 @@ export class CreateProductController {
       typeof bar_code === 'undefined' ||
       typeof quantity === 'undefined' ||
       typeof slug === 'undefined' ||
+      typeof home === 'undefined' ||
       typeof image === 'undefined'
     ) {
       return response.status(500).json({
@@ -74,20 +51,23 @@ export class CreateProductController {
       })
     }
 
-    const product = await prisma.products.create({
+    const product = await prisma.products.update({
+      where: {
+        id
+      },
       data: {
         name,
         price,
         bar_code,
-        size,
         color,
+        size,
+        quantity,
         description,
         image,
-        quantity,
         slug
-      },
+      }
     });
 
-    return response.status(200).json(product);
+    return response.json(product);
   }
 }

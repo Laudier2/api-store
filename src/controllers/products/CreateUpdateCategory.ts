@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
-import { prismaClient } from "../database/prismaClient";
+import { prisma } from "../../prisma_Client_Orm/prismaClient";
 
 export class CreateCategoryUpdate {
   async handle(request: Request, response: Response) {
     const { id, name } = request.body;
 
-    const category = await prismaClient.category.update({
+    const category = await prisma.category.update({
       where: {
         id: id,
       },

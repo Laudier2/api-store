@@ -1,11 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import * as jwt from "jsonwebtoken";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient()
+import { AppError } from "../../err/AppErros";
+import { prisma } from "../../prisma_Client_Orm/prismaClient";
 
 type JwtPayload = {
-    id: string
+  id: string
 }
 
 export class ControllerAuth {
@@ -13,8 +12,8 @@ export class ControllerAuth {
     //const { password } = request.body;
     const { authorization } = request.headers;
 
-    if(!authorization){
-      return response.status(401).json({ message: `Token invalido, você não esta autorizado ${authorization}`})
+    if (!authorization) {
+      return response.status(401).json({ message: `Token invalido, você não esta autorizado ${authorization}` })
       //return console.log("Token invalido, você não esta autorizado")
     }
 
@@ -23,18 +22,18 @@ export class ControllerAuth {
     const { id } = jwt.verify(token, process.env.APP_KEY ?? '') as JwtPayload
 
     const user = await prisma.user.findFirst({
-        where: {
-            id
-        }
-     })
+      where: {
+        id
+      }
+    })
 
-     if(!user){
-        return response.send({msg: "Houve um erro"})
-     }
+    if (!user) {
+      throw new AppError("Houve um erro")
+    }
 
     const { password: _, ...userLogin } = user
 
-    return  response.status(401).json({ message: `Usuario autorizado, acesso liberado`, userLogin})
+    return response.status(401).json({ message: `Usuario autorizado, acesso liberado`, userLogin })
 
     next()
   }

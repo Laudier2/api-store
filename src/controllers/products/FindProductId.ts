@@ -1,33 +1,12 @@
 import { Request, Response } from "express";
-import { prismaClient } from "../database/prismaClient";
+import { prisma } from "../../prisma_Client_Orm/prismaClient";
 
 export class FindProductController {
   async handle(request: Request, response: Response) {
 
-    const product = await prismaClient.products.findMany({});
+    const product = await prisma.products.findMany({});
 
     return response.json(product);
-  }
-}
-
-export class controllerProductCategory {
-  async handle(request: Request, response: Response) {
-    const { id } = request.body;
-
-    const User = await prismaClient.products.findMany({
-      where: {
-        id: id
-      },
-      include: {
-        products_categories: {
-          include: {
-            categories: true
-          }
-        }
-      }
-    });
-
-    return response.json(User);
   }
 }
 
@@ -35,7 +14,7 @@ export class controllerProductId {
   async handle(request: Request, response: Response) {
     const { id } = request.params;
 
-    const userExists = await prismaClient.products.findUnique({
+    const userExists = await prisma.products.findUnique({
       where: {
         id: id
       }
@@ -47,7 +26,7 @@ export class controllerProductId {
       })
     }
 
-    const User = await prismaClient.products.findUnique({
+    const Product = await prisma.products.findUnique({
       where: {
         id: id
       },
@@ -60,6 +39,6 @@ export class controllerProductId {
       }
     });
 
-    return response.status(200).json(User);
+    return response.status(200).json(Product);
   }
 }

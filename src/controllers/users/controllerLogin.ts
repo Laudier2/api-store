@@ -1,30 +1,29 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
 import * as bcrypt from "bcrypt";
 import * as jwt from "jsonwebtoken";
-
-const prisma = new PrismaClient()
+import { AppError } from "../../err/AppErros";
+import { prisma } from "../../prisma_Client_Orm/prismaClient";
 
 export class ControllerLogin {
   async handle(request: Request, response: Response) {
     const { email, password } = request.body;
 
     const user = await prisma.user.findUnique({
-       where: {
-          email
-       }
+      where: {
+        email
+      }
     })
 
-    const message = { errr: "E-mail ou senha invalida"}
+    const message = { errr: "E-mail ou senha invalida" }
 
-    if(!user){
-       return response.status(400).json(message.errr)
-    } 
+    if (!user) {
+      throw new AppError(message.errr)
+    }
 
     const verifyPass = await bcrypt.compare(password, user.password)
 
-    if(!verifyPass){
-      return response.status(400).json(message.errr);
+    if (!verifyPass) {
+      throw new AppError(message.errr);
     }
 
     const token = jwt.sign({ id: user.id }, process.env.APP_KEY ?? '', {

@@ -1,44 +1,19 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient()
+import { prisma } from "../../prisma_Client_Orm/prismaClient";
+import { AppError } from "../../err/AppErros";
 
-export class CreateUpdateProduct {
+export class CreateProductWithExistCategory {
   async handle(request: Request, response: Response) {
-    const {
-      id,
-      name,
-      price,
-      bar_code,
-      size,
-      color,
-      description,
-      image,
-      quantity,
-      slug
-    } = request.body;
+    const { id, name, price, bar_code, color, size, quantity, description, image, slug, id_category } = request.body;
 
-    const barcodeExists = await prisma.products.findUnique({
+    const userExists = await prisma.category.findUnique({
       where: {
-        bar_code: bar_code
+        id: id_category
       }
     })
 
-    if (barcodeExists && id !== barcodeExists.id) {
-      return response.status(400).json({
-        msg: `Esse bar_code: ${bar_code} já estar cadastrado em outro produto, tente outro!`
-      })
-    }
-
-    const slugExists = await prisma.products.findUnique({
-      where: {
-        slug: slug
-      }
-    })
-
-    if (slugExists && id !== slugExists.id) {
-      return response.status(400).json({
-        msg: `Esse slug: ${slug} já estar cadastrado em outro produto, tente outro!`
-      })
+    if (!userExists) {
+      throw new AppError(`Esse id: ${id_category} não estar vinculado a nem uma categoria, tente outro!`)
     }
 
 
@@ -74,23 +49,31 @@ export class CreateUpdateProduct {
       })
     }
 
-    const product = await prisma.products.update({
-      where: {
-        id: id,
-      },
+    const product = await prisma.products_categories.create({
       data: {
-        name,
-        price,
-        bar_code,
-        size,
-        color,
-        description,
-        image,
-        quantity,
-        slug
+        id: id,
+        products: {
+          create: {
+            id: id,
+            name,
+            price,
+            bar_code,
+            color,
+            size,
+            quantity,
+            description,
+            image,
+            slug
+          },
+        },
+        categories: {
+          connect: {
+            id: id_category,
+          },
+        },
       },
     });
 
-    return response.status(200).json(product);
+    return response.status(201).json(product)
   }
 }

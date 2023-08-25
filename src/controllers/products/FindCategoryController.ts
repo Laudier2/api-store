@@ -1,7 +1,5 @@
-import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
-
-const prisma = new PrismaClient()
+import { prisma } from "../../prisma_Client_Orm/prismaClient";
 
 export class FindCategoryController {
   async handle(request: Request, response: Response) {

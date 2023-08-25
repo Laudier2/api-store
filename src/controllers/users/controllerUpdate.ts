@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
 import * as bcrypt from "bcrypt";
-
-const prisma = new PrismaClient()
+import { AppError } from "../../err/AppErros";
+import { prisma } from "../../prisma_Client_Orm/prismaClient";
 
 export class controllerUpdate {
   async handle(request: Request, response: Response) {
@@ -30,9 +29,7 @@ export class controllerUpdate {
     })
 
     if (userExists) {
-      return response.status(400).json({
-        msg: `O email ${email} já existe!  E lembre-se que, todos os campos tem que ser string ok!`
-      })
+      throw new AppError(`O email ${email} já existe!  E lembre-se que, todos os campos tem que ser string ok!`)
     }
 
     if (typeof id === "undefined") {

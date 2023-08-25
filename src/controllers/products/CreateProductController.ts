@@ -1,20 +1,42 @@
 import { Request, Response } from "express";
-import { prismaClient } from "../database/prismaClient";
+import { AppError } from "../../err/AppErros";
+import { prisma } from "../../prisma_Client_Orm/prismaClient";
 
-export class CreateProductWithExistCategoryPut {
+export class CreateProductController {
   async handle(request: Request, response: Response) {
-    const { id, name, home, price, bar_code, color, size, quantity, description, image, slug } = request.body;
+    const {
+      id,
+      name,
+      price,
+      bar_code,
+      size,
+      color,
+      description,
+      image,
+      quantity,
+      slug
+    } = request.body;
 
-    const userExists = await prismaClient.products.findUnique({
+    /* Aque abaixo começamos a cria nossa regra de negocio, verificamos se o bar_code existe, ou se o slug ja existe, 
+    se sim, ira mostra uma messagem dizendo que ja isExpressionStatement, se não ele cria o produto*/
+    const barcodeExists = await prisma.products.findUnique({
       where: {
-        id: id
+        bar_code: bar_code
       }
     })
 
-    if (!userExists) {
-      return response.status(400).json({
-        msg: `Esse id: ${id} não estar cadastrado, tente outro!`
-      })
+    if (barcodeExists) {
+      throw new AppError(`\n\n Esse bar_code: ${bar_code} já estar cadastrado em outro produto, tente outro!\n\n `)
+    }
+
+    const slugExists = await prisma.products.findUnique({
+      where: {
+        slug: slug
+      }
+    })
+
+    if (slugExists) {
+      throw new AppError(`Esse slug: ${slug} já estar cadastrado em outro produto, tente outro!\n\n `)
     }
 
 
@@ -27,7 +49,6 @@ export class CreateProductWithExistCategoryPut {
       typeof quantity === 'number' ||
       typeof description === 'number' ||
       typeof slug === 'number' ||
-      typeof home === 'number' ||
       typeof image === 'number'
     ) {
       return response.status(500).json({
@@ -44,7 +65,6 @@ export class CreateProductWithExistCategoryPut {
       typeof bar_code === 'undefined' ||
       typeof quantity === 'undefined' ||
       typeof slug === 'undefined' ||
-      typeof home === 'undefined' ||
       typeof image === 'undefined'
     ) {
       return response.status(500).json({
@@ -52,23 +72,20 @@ export class CreateProductWithExistCategoryPut {
       })
     }
 
-    const product = await prismaClient.products.update({
-      where: {
-        id
-      },
+    const product = await prisma.products.create({
       data: {
         name,
         price,
         bar_code,
-        color,
         size,
-        quantity,
+        color,
         description,
         image,
+        quantity,
         slug
-      }
+      },
     });
 
-    return response.json(product);
+    return response.status(200).json(product);
   }
 }

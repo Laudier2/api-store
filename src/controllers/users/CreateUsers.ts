@@ -1,23 +1,35 @@
-import { Request, Response } from "express";
-import { prismaClient } from "../../database/prismaClient";
+import { prisma } from "../../prisma_Client_Orm/prismaClient";
 import * as bcrypt from "bcrypt"
+import { AppError } from "../../err/AppErros";
+import { CreatUserDTO } from "./dtos/CreatUsersDTO";
 
-export class ControllerCreate {
-  async handle(request: Request, response: Response) {
-    const { name, email, password, home, phone, city, cep, street, image, state, number } = request.body;
+export class CreateUser {
+
+  async execute({
+    name,
+    email,
+    password,
+    home,
+    phone,
+    city,
+    cep,
+    street,
+    image,
+    state,
+    number
+  }: CreatUserDTO) {
 
     const cryptPass = await bcrypt.hash(password, 8)
 
-    const userExists = await prismaClient.user.findUnique({
+    // Verifica se o ususario já existe
+    const userExists = await prisma.user.findUnique({
       where: {
         email: email
       }
     })
 
     if (userExists) {
-      return response.status(400).json({
-        msg: `O email ${email} já existe!  E lembre-se que, todos os campos tem que ser string ok!`
-      })
+      throw new AppError(`O email ${email} já existe!  E lembre-se que, todos os campos tem que ser string ok!`)
     }
 
 
@@ -34,7 +46,7 @@ export class ControllerCreate {
       typeof home === 'number' ||
       typeof image === 'number'
     ) {
-      return response.status(500).json({
+      return ({
         msg: `Algum campo estar em número! Lembre-se que, todos os campos tem estar em string ok!`
       })
     }
@@ -52,12 +64,13 @@ export class ControllerCreate {
       typeof home === 'undefined' ||
       typeof image === 'undefined'
     ) {
-      return response.status(500).json({
+      return ({
         msg: `Algum campo esta faltando! Verifique novamente!`
       })
     }
 
-    const user = await prismaClient.user.create({
+    // Se o Ususario não exite ele cria aqui
+    const user = await prisma.user.create({
       data: {
         email,
         name,
@@ -73,6 +86,6 @@ export class ControllerCreate {
       }
     })
 
-    return response.status(201).json({ message: 'Usuario criado com ', user })
+    return user
   }
 }

@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient()
+import { AppError } from "../../err/AppErros";
+import { prisma } from "../../prisma_Client_Orm/prismaClient";
 
 export class controllerDelete {
   async handle(request: Request, response: Response) {
@@ -14,9 +13,9 @@ export class controllerDelete {
     })
 
     if (!idExists) {
-      return response.status(400).json({
-        msg: `Esse id: ${id} não existe mais no database`
-      })
+
+      throw new AppError(`Esse id: ${id} não existe mais no database`)
+
     }
 
     const user = await prisma.user.delete({
