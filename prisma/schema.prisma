@@ -8,51 +8,77 @@ datasource db {
 }
 
 model User {
-  id         String   @id @default(uuid())
-  name       String
-  phone      String
-  email      String   @unique
-  image      String
-  password   String
-  street     String
-  city       String
-  home       String
-  state      String
-  cep        String
-  number     String
+  id       String @id @default(uuid())
+  email    String @unique
+  password String
+
   created_at DateTime @default(now())
   update_at  DateTime @default(now())
+
+  User_Adress User_Adress[]
 
   @@map("users")
 }
 
+model Adress {
+  id         String   @id @default(uuid())
+  name       String
+  image      String
+  street     String
+  city       String
+  home       String
+  phone      String
+  state      String
+  cep        String
+  district   String
+  number     String
+  created_at DateTime @default(now())
+  update_at  DateTime @default(now())
+
+  User_Adress User_Adress[]
+
+  @@map("adress")
+}
+
 model Category {
-  id                  String                @id @default(uuid())
-  name                String
-  products_categories products_categories[]
+  id               String             @id @default(uuid())
+  name             String
+  product_category Product_Category[]
 
   @@map("categories")
 }
 
-model products {
-  id                  String                @id @default(uuid())
-  name                String
-  bar_code            String                @unique
-  price               String
-  image               String[]
-  size                String[]
-  color               String[]
-  slug                String                @unique
-  description         String
-  quantity            String
-  created_at          DateTime              @default(now())
-  products_categories products_categories[]
+model Product {
+  id               String             @id @default(uuid())
+  name             String
+  bar_code         String             @unique
+  price            String
+  image            String[]
+  size             String[]
+  color            String[]
+  slug             String             @unique
+  description      String
+  quantity         String
+  created_at       DateTime           @default(now())
+  product_category Product_Category[]
+
+  @@map("products")
 }
 
-model products_categories {
-  id          String   @id
+model Product_Category {
+  id          String   @id @default(uuid())
   id_product  String
   id_category String
   categories  Category @relation(fields: [id_category], references: [id])
-  products    products @relation(fields: [id_product], references: [id])
+  products    Product  @relation(fields: [id_product], references: [id])
+
+  @@map("product_category_relations")
+}
+
+model User_Adress {
+  id        String @id @default(uuid())
+  id_user   String
+  id_adress String
+  users     User   @relation(fields: [id_user], references: [id])
+  adress    Adress @relation(fields: [id_adress], references: [id])
 }

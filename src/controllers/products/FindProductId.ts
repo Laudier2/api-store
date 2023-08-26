@@ -4,7 +4,7 @@ import { prisma } from "../../prisma_Client_Orm/prismaClient";
 export class FindProductController {
   async handle(request: Request, response: Response) {
 
-    const product = await prisma.products.findMany({});
+    const product = await prisma.product.findMany({});
 
     return response.json(product);
   }
@@ -14,7 +14,7 @@ export class controllerProductId {
   async handle(request: Request, response: Response) {
     const { id } = request.params;
 
-    const userExists = await prisma.products.findUnique({
+    const userExists = await prisma.product.findUnique({
       where: {
         id: id
       }
@@ -26,12 +26,12 @@ export class controllerProductId {
       })
     }
 
-    const Product = await prisma.products.findUnique({
+    const Product = await prisma.product.findUnique({
       where: {
         id: id
       },
       include: {
-        products_categories: {
+        product_category: {
           include: {
             categories: true
           }

@@ -6,7 +6,7 @@ export class controllerProductDelete {
     async handle(request: Request, response: Response) {
         const id = request.params.id;
 
-        const idExists = await prisma.products.findUnique({
+        const idExists = await prisma.product.findUnique({
             where: {
                 id: id
             }
@@ -16,7 +16,7 @@ export class controllerProductDelete {
             throw new AppError(`Esse id: ${id} não existe mais no database`)
         }
 
-        const product = await prisma.products.delete({
+        const product = await prisma.product.delete({
             where: {
                 id: id
             }

@@ -3,12 +3,12 @@ import { CreateUser } from "./CreateUsers";
 
 export class ControllerCreate {
   async handle(request: Request, response: Response) {
-    const { name, email, password, home, phone, city, cep, street, image, state, number } = request.body;
+    const { name, email, password, district, home, phone, city, cep, street, image, state, number } = request.body;
 
     const createUserCase = new CreateUser()
 
     const result = await createUserCase.execute({
-      name, email, password, home, phone, city, cep, street, image, state, number
+      email, password
     })
 
     return response.status(201).json(result)

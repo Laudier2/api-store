@@ -15,9 +15,9 @@ export class CreateProductController {
       slug
     } = request.body;
 
-    const createUserCase = new CreateProduct()
+    const createProductCase = new CreateProduct()
 
-    const result = await createUserCase.execute({
+    const result = await createProductCase.execute({
       name,
       price,
       bar_code,

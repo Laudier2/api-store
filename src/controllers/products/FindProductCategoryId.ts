@@ -5,12 +5,12 @@ export class controllerProductCategory {
   async handle(request: Request, response: Response) {
     const { id } = request.body;
 
-    const Product = await prisma.products.findMany({
+    const Product = await prisma.product.findMany({
       where: {
         id: id
       },
       include: {
-        products_categories: {
+        product_category: {
           include: {
             categories: true
           }

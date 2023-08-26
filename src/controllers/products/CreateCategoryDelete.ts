@@ -22,6 +22,10 @@ export class controllerCategoryDelete {
             }
         })
 
-        return response.json({ msg: "Categoria deletado com sucesso!", product });
+        try {
+            return response.json({ msg: "Categoria deletado com sucesso!", product });
+        } catch (error) {
+            throw new Error(`A categoria não pode ser deletada!`)
+        }
     }
 }

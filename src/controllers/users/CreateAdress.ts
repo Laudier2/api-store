@@ -1,28 +1,20 @@
 import { prisma } from "../../prisma_Client_Orm/prismaClient";
-import * as bcrypt from "bcrypt"
-import { AppError } from "../../err/AppErros";
-import { CreatUserDTO } from "./dtos/CreatUsersDTO";
+import { CreatAdressDTO } from "./dtos/CreatAdressDTO";
 
-export class CreateUser {
+export class CreateAdress {
 
   async execute({
-    email,
-    password
-  }: CreatUserDTO) {
-
-    const cryptPass = await bcrypt.hash(password, 8)
-
-    // Verifica se o ususario já existe
-    const userExists = await prisma.user.findUnique({
-      where: {
-        email: email
-      }
-    })
-
-    if (userExists) {
-      throw new AppError(`O email ${email} já existe!  E lembre-se que, todos os campos tem que ser string ok!`)
-    }
-
+    name,
+    home,
+    phone,
+    city,
+    cep,
+    street,
+    image,
+    state,
+    number,
+    district,
+  }: CreatAdressDTO) {
 
     /*if (
       typeof number === 'number' ||
@@ -61,10 +53,18 @@ export class CreateUser {
     }*/
 
     // Se o Ususario não exite ele cria aqui
-    const user = await prisma.user.create({
+    const user = await prisma.adress.create({
       data: {
-        email,
-        password: cryptPass
+        name,
+        home,
+        phone,
+        number,
+        cep,
+        street,
+        city,
+        state,
+        image,
+        district
       }
     })
 

@@ -1,7 +1,6 @@
-import { Request, Response } from "express";
 import { AppError } from "../../err/AppErros";
 import { prisma } from "../../prisma_Client_Orm/prismaClient";
-import { CreatProductDTO } from "./dtos/CreatUsersDTO";
+import { CreatProductDTO } from "./dtos/CreatProductDTO";
 
 export class CreateProduct {
   async execute({
@@ -18,7 +17,7 @@ export class CreateProduct {
 
     /* Aque abaixo começamos a cria nossa regra de negocio, verificamos se o bar_code existe, ou se o slug ja existe, 
     se sim, ira mostra uma messagem dizendo que ja isExpressionStatement, se não ele cria o produto*/
-    const barcodeExists = await prisma.products.findUnique({
+    const barcodeExists = await prisma.product.findUnique({
       where: {
         bar_code: bar_code
       }
@@ -28,7 +27,7 @@ export class CreateProduct {
       throw new AppError(`\n\n Esse bar_code: ${bar_code} já estar cadastrado em outro produto, tente outro!\n\n `)
     }
 
-    const slugExists = await prisma.products.findUnique({
+    const slugExists = await prisma.product.findUnique({
       where: {
         slug: slug
       }
@@ -71,7 +70,7 @@ export class CreateProduct {
       }
     }
 
-    const product = await prisma.products.create({
+    const product = await prisma.product.create({
       data: {
         name,
         price,

@@ -6,6 +6,7 @@ import { CreateUpdateProduct } from "../controllers/products/CreateUpdateProduct
 import { controllerProductDelete } from "../controllers/products/CreateProductDelete";
 import { controllerCategoryDelete } from "../controllers/products/CreateCategoryDelete";
 import { FindCategoryController } from "../controllers/products/FindCategoryController";
+import { FindCategoryRelation } from "../controllers/products/FindCategorProductRealtion";
 import { FindProductController } from "../controllers/products/FindProductController";
 import { controllerProductCategory } from "../controllers/products/FindProductCategoryId";
 import { controllerProductId } from "../controllers/products/FindProductId";
@@ -23,6 +24,8 @@ import { controllerDelete } from "../controllers/users/controllerDeleteUser";
 import { ControllerAuth } from "../controllers/users/controllerAuth";
 import { ControllerLogin } from "../controllers/users/controllerLogin";
 import { UserParamesId } from "../controllers/users/controllerParamesIdFindUser";
+import { ControllerFindAdressUser } from "../controllers/users/controllerFindUserAdress";
+
 
 const router = Router();//
 
@@ -39,6 +42,7 @@ const createCategoryUpdate = new CreateCategoryUpdate();
 
 /* ============================== OBJETO CRIADOS PARA ROTAS RELACIONAMENTO ====================== */
 const createCategoryDel = new controllerCategoryDelete();
+const findCategoryRelation = new FindCategoryRelation()
 const createProductCategory = new CreateProductCategoryController();
 const createProductCategoryExist = new CreateProductWithExistCategory();
 const createProductCategoryExistPut = new CreateProductWithExistCategoryPut();
@@ -61,13 +65,15 @@ router.put("/category", createCategoryUpdate.handle);
 
 /*=================================== ROTA DE REALACIONAMENTO =============================*/
 router.delete("/category/:id", createCategoryDel.handle);
-router.post("/categoryproduct", createProductCategory.handle);
+router.get("/categorypr", findCategoryRelation.handle);
+router.post("/categorypr", createProductCategory.handle);
 router.post("/productwithcategory", createProductCategoryExist.handle);
 router.put("/productwithcategoryput", createProductCategoryExistPut.handle);
 
 /*=================================== ROTA DE USERS =============================*/
 
 const findUser = new ControllerFind()
+const findUserAdress = new ControllerFindAdressUser()
 const findUserId = new UserParamesId()
 const createUser = new ControllerCreate()
 const deleteUser = new controllerDelete()
@@ -83,6 +89,7 @@ router.post("/login", loginUser.handle);
 router.put("/user", updateUser.handle);
 router.delete("/user/:id", deleteUser.handle);
 router.get("/", findUser.handle);
+router.get("/usersadress", findUserAdress.handle);
 router.get("/user/:id", findUserId.handle);
 
 export { router };

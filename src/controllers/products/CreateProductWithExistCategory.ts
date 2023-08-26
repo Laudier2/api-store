@@ -4,7 +4,7 @@ import { AppError } from "../../err/AppErros";
 
 export class CreateProductWithExistCategory {
   async handle(request: Request, response: Response) {
-    const { id, name, price, bar_code, color, size, quantity, description, image, slug, id_category } = request.body;
+    const { name, price, bar_code, color, size, quantity, description, image, slug, id_category } = request.body;
 
     const userExists = await prisma.category.findUnique({
       where: {
@@ -49,12 +49,10 @@ export class CreateProductWithExistCategory {
       })
     }
 
-    const product = await prisma.products_categories.create({
+    const product = await prisma.product_Category.create({
       data: {
-        id: id,
         products: {
           create: {
-            id: id,
             name,
             price,
             bar_code,

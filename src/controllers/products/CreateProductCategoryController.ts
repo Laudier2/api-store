@@ -1,42 +1,19 @@
 import { Request, Response } from "express";
-import { prisma } from "../../prisma_Client_Orm/prismaClient";
+import { CreateProductCategoryRelation } from "./CreateProductCategoryRelation";
 
 export class CreateProductCategoryController {
   async handle(request: Request, response: Response) {
-    const { id, id_product, id_category } = request.body;
+    const { id_product, id_category } = request.body;
 
-    if (
-      typeof id_category === 'number' ||
-      typeof id_product === 'number'
-    ) {
-      return response.status(500).json({
-        msg: `Algum campo estar em número! 
-        Lembre-se que, todos os campos tem estar em string ok!
-        Ou o id esta errado, verifique novamente
-        `
-      })
-    }
+    const createProductCase = new CreateProductCategoryRelation();
 
-    if (
-      typeof id_category === 'undefined' ||
-      typeof id_product === 'undefined'
-    ) {
-      return response.status(500).json({
-        msg: `Algum campo esta faltando! Verifique novamente!
-        Ou o id esta errado, verifique novamente`
-      })
-    }
+    const result = await createProductCase.execute({
 
-    const productCategory = await prisma.products_categories.create({
-      data: {
-        id: id,
-        id_category,
-        id_product,
-      },
+      id_category,
+      id_product,
+
     });
 
-    console.log(productCategory)
-
-    return response.json(productCategory);
+    return response.json(result);
   }
 }

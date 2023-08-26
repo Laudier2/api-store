@@ -39,7 +39,7 @@ export class controllerUpdate {
     }
 
 
-    if (
+    /*if (
       typeof number === 'number' ||
       typeof phone === 'number' ||
       typeof cep === 'number' ||
@@ -73,7 +73,7 @@ export class controllerUpdate {
       return response.status(500).json({
         msg: `Algum campo esta faltando! E lembre-se que todos os campos tem que ser string ok!`
       })
-    }
+    }*/
 
     const user = await prisma.user.update({
       where: {
@@ -81,16 +81,7 @@ export class controllerUpdate {
       },
       data: {
         email,
-        name,
-        phone,
-        image,
-        password: cryptPass,
-        home,
-        street,
-        city,
-        cep,
-        number,
-        state
+        password: cryptPass
       }
     })
 

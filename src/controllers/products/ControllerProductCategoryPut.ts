@@ -6,7 +6,7 @@ export class CreateProductWithExistCategoryPut {
   async handle(request: Request, response: Response) {
     const { id, name, home, price, bar_code, color, size, quantity, description, image, slug } = request.body;
 
-    const userExists = await prisma.products.findUnique({
+    const userExists = await prisma.product.findUnique({
       where: {
         id: id
       }
@@ -51,7 +51,7 @@ export class CreateProductWithExistCategoryPut {
       })
     }
 
-    const product = await prisma.products.update({
+    const product = await prisma.product.update({
       where: {
         id
       },

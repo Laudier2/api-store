@@ -17,7 +17,7 @@ export class CreateUpdateProduct {
       slug
     } = request.body;
 
-    const barcodeExists = await prisma.products.findUnique({
+    const barcodeExists = await prisma.product.findUnique({
       where: {
         bar_code: bar_code
       }
@@ -27,7 +27,7 @@ export class CreateUpdateProduct {
       throw new AppError(`Esse bar_code: ${bar_code} já estar cadastrado em outro produto, tente outro!`)
     }
 
-    const slugExists = await prisma.products.findUnique({
+    const slugExists = await prisma.product.findUnique({
       where: {
         slug: slug
       }
@@ -70,7 +70,7 @@ export class CreateUpdateProduct {
       })
     }
 
-    const product = await prisma.products.update({
+    const product = await prisma.product.update({
       where: {
         id: id,
       },
