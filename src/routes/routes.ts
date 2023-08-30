@@ -26,6 +26,13 @@ import { ControllerLogin } from "../controllers/users/controllerLogin";
 import { UserParamesId } from "../controllers/users/controllerParamesIdFindUser";
 import { ControllerFindAdressUser } from "../controllers/users/controllerFindUserAdress";
 
+//============== importação de class de controller de adress =================
+import { CreateAdressUser } from "../controllers/adress/CreateAdressUser";
+import { FindAdressUser } from "../controllers/adress/FindAdressUser ";
+import { UpdateAdressUser } from "../controllers/adress/UpdateAdressUser";
+import { ControllerRelationsUserAdress } from "../controllers/users/CreateRealationsUserAdress";
+import { FindRelationsUserAdress } from "../controllers/users/FindUserAdressReations";
+import { FindRelationsUserAdressId } from "../controllers/users/FindUserAdressReationsId";
 
 const router = Router();//
 
@@ -91,5 +98,24 @@ router.delete("/user/:id", deleteUser.handle);
 router.get("/", findUser.handle);
 router.get("/usersadress", findUserAdress.handle);
 router.get("/user/:id", findUserId.handle);
+
+/* ============================== OBJETO CRIADOS PARA ROTAS ADRESS ====================== */
+const createAdress = new CreateAdressUser()
+const findAdress = new FindAdressUser()
+const findAdressUersRealations = new FindRelationsUserAdress()
+const findAdressUersRealationsid = new FindRelationsUserAdressId()
+const updateAdress = new UpdateAdressUser()
+const relationUserAdress = new ControllerRelationsUserAdress()
+
+/* ============================= ROTAS DE ADRESS =============================== */
+router.post("/adress", createAdress.handle)
+router.get("/adress", findAdress.handle)
+router.put("/adress", updateAdress.handle)
+
+/* ============================= ROTAS DE REATION_USER_ADRESS =============================== */
+router.post("/relationuseradress", relationUserAdress.handle)
+router.get("/relationuseradress", findAdressUersRealations.handle)
+router.get("/relationuseradress/:id", findAdressUersRealationsid.handle)
+
 
 export { router };

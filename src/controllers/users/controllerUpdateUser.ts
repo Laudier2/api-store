@@ -7,17 +7,8 @@ export class controllerUpdate {
   async handle(request: Request, response: Response) {
     const {
       id,
-      name,
       email,
-      password,
-      phone,
-      image,
-      home,
-      street,
-      city,
-      cep,
-      number,
-      state
+      password
     } = request.body;
 
     const cryptPass = await bcrypt.hash(password, 8)
@@ -28,7 +19,11 @@ export class controllerUpdate {
       }
     })
 
-    if (userExists) {
+    //const res = !!userExists?.id
+
+    console.log(id)
+
+    if (userExists && userExists?.id !== id) {
       throw new AppError(`O email ${email} já existe!  E lembre-se que, todos os campos tem que ser string ok!`)
     }
 
