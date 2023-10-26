@@ -12,6 +12,7 @@ export class CreateProductController {
       description,
       image,
       quantity,
+      amount,
       slug
     } = request.body;
 
@@ -26,6 +27,7 @@ export class CreateProductController {
       description,
       image,
       quantity,
+      amount,
       slug
     })
 

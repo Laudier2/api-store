@@ -1,3 +1,5 @@
+import { Decimal } from "@prisma/client/runtime";
+
 export interface CreatProductDTO {
     name: string;
     price: string;
@@ -7,5 +9,6 @@ export interface CreatProductDTO {
     description: string;
     image: string;
     quantity: string;
+    amount: Decimal;
     slug: string;
 }

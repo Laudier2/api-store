@@ -117,5 +117,9 @@ router.post("/relationuseradress", relationUserAdress.handle)
 router.get("/relationuseradress", findAdressUersRealations.handle)
 router.get("/relationuseradress/:id", findAdressUersRealationsid.handle)
 
+/* ============================= ROTAS DE REATION_USER_ADRESS =============================== */
+router.get('/mcp', (req, res) => {
+    res.status(200).sendFile("index.html")
+})
 
 export { router };
