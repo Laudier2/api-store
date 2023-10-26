@@ -11,7 +11,7 @@ const port = process.env.PORT || 3005
 const app = express();
 
 mercadopago.configure({
-    access_token: "APP_USR-260945821071771-022100-dee3aecc56701815dd9c5590103eddd4-349702513",
+    access_token: '${process.env.TOKEN_MERCADO_PAGO}',
 });
 
 app.use(express.urlencoded({ extended: false }));
