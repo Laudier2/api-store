@@ -6,6 +6,10 @@ import { CreatUserDTO } from "./dtos/CreatUsersDTO";
 export class CreateUser {
 
   async execute({
+    name,
+    phone,
+    age,
+    access,
     email,
     password
   }: CreatUserDTO) {
@@ -63,6 +67,10 @@ export class CreateUser {
     // Se o Ususario não exite ele cria aqui
     const user = await prisma.user.create({
       data: {
+        name,
+        age,
+        phone,
+        access,
         email,
         password: cryptPass
       }

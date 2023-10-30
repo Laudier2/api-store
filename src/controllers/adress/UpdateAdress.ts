@@ -5,9 +5,7 @@ export class UpdateAdress {
 
   async execute({
     id,
-    name,
     home,
-    phone,
     city,
     cep,
     street,
@@ -19,10 +17,8 @@ export class UpdateAdress {
 
     if (
       typeof number === 'number' ||
-      typeof phone === 'number' ||
       typeof cep === 'number' ||
       typeof district === 'number' ||
-      typeof name === 'number' ||
       typeof state === 'number' ||
       typeof street === 'number' ||
       typeof city === 'number' ||
@@ -36,10 +32,8 @@ export class UpdateAdress {
 
     if (
       typeof number === 'undefined' ||
-      typeof phone === 'undefined' ||
       typeof cep === 'undefined' ||
       typeof district === 'undefined' ||
-      typeof name === 'undefined' ||
       typeof state === 'undefined' ||
       typeof street === 'undefined' ||
       typeof city === 'undefined' ||
@@ -57,9 +51,7 @@ export class UpdateAdress {
         id: id,
       },
       data: {
-        name,
         home,
-        phone,
         number,
         cep,
         street,

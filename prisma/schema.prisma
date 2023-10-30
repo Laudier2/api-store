@@ -9,8 +9,12 @@ datasource db {
 
 model User {
   id          String        @id @default(uuid())
+  name    String
   email       String        @unique
   password    String
+  phone    String
+  age    String
+  access    String
   created_at  DateTime      @default(now())
   update_at   DateTime      @default(now())
   User_Adress User_Adress[]
@@ -20,12 +24,10 @@ model User {
 
 model Adress {
   id          String        @id @default(uuid())
-  name        String
   image       String
   street      String
   city        String
   home        String
-  phone       String
   state       String
   cep         String
   district    String

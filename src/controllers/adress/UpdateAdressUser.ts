@@ -8,7 +8,7 @@ export class UpdateAdressUser {
     const updateUserCase = new UpdateAdress()
 
     const result = await updateUserCase.execute({
-      id, image, name, phone, state, city, district, cep, street, number, home,
+      id, image, state, city, district, cep, street, number, home,
     })
 
     return response.status(201).json(result)

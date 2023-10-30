@@ -4,9 +4,7 @@ import { CreatAdressDTO } from "./dtos/CreatAdressDTO";
 export class FindAdress {
 
   async execute({
-    name,
     home,
-    phone,
     city,
     cep,
     street,

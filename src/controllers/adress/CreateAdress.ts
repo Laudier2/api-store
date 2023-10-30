@@ -4,9 +4,7 @@ import { CreatAdressDTO } from "./dtos/CreatAdressDTO";
 export class CreateAdress {
 
   async execute({
-    name,
     home,
-    phone,
     city,
     cep,
     street,
@@ -55,9 +53,7 @@ export class CreateAdress {
     // Se o Ususario não exite ele cria aqui
     const user = await prisma.adress.create({
       data: {
-        name,
         home,
-        phone,
         number,
         cep,
         street,

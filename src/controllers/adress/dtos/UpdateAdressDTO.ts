@@ -1,7 +1,5 @@
 export interface UpdateAdressDTO {
     id: string;
-    name: string;
-    phone: string;
     image: string;
     home: string;
     street: string;
