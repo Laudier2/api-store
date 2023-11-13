@@ -2,7 +2,7 @@ import { prisma } from "../../prisma_Client_Orm/prismaClient";
 import { CreatProducRelationtDTO } from "./dtos/CreatProductRelationDTO";
 
 export class CreateProductCategoryRelation {
-  async execute({ id_product, id_category }: CreatProducRelationtDTO) {
+  async execute({ id_product, id_category, id }: CreatProducRelationtDTO) {
 
     if (
       typeof id_category === 'number' ||
@@ -26,8 +26,9 @@ export class CreateProductCategoryRelation {
       }
     }
 
-    const productCategory = await prisma.product_Category.create({
+    const productCategory = await prisma.product_category_relations.create({
       data: {
+        id,
         id_category,
         id_product,
       },

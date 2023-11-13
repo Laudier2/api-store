@@ -2,7 +2,7 @@ import { prisma } from "../../prisma_Client_Orm/prismaClient";
 import { RelationUserAdresstDTO } from "./dtos/RelationUserAdressDTO";
 
 export class RelationUserAdress {
-  async execute({ id_user, id_adress }: RelationUserAdresstDTO) {
+  async execute({ id_user, id_adress, id }: RelationUserAdresstDTO) {
 
     if (
       typeof id_user === 'number' ||
@@ -28,6 +28,7 @@ export class RelationUserAdress {
 
     const relatiosnUserAdress = await prisma.user_Adress.create({
       data: {
+        id,
         id_user,
         id_adress,
       },

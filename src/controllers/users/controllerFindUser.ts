@@ -5,11 +5,7 @@ export class ControllerFind {
   async handle(request: Request, response: Response) {
     const { id } = request.body;
 
-    const user = await prisma.user.findMany({
-      where: {
-        id
-      }
-    })
+    const user = await prisma.users.findMany({})
 
     return response.status(200).json(user)
 

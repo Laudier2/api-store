@@ -2,20 +2,9 @@ import { Request, Response } from "express";
 import { prisma } from "../../prisma_Client_Orm/prismaClient";
 import { AppError } from "../../err/AppErros";
 
-export class CreateProductWithExistCategory {
+export class CreateProductWithExistcategories {
   async handle(request: Request, response: Response) {
-    const { name, price, bar_code, color, size, quantity, description, image, slug, id_category } = request.body;
-
-    const userExists = await prisma.category.findUnique({
-      where: {
-        id: id_category
-      }
-    })
-
-    if (!userExists) {
-      throw new AppError(`Esse id: ${id_category} não estar vinculado a nem uma categoria, tente outro!`)
-    }
-
+    const { id, name, price, bar_code, color, size, quantity, description, image, slug, id_categories } = request.body;
 
     if (
       typeof price === 'number' ||
@@ -49,10 +38,23 @@ export class CreateProductWithExistCategory {
       })
     }
 
-    const product = await prisma.product_Category.create({
+    const userExists = await prisma.categories.findUnique({
+      where: {
+        id: id_categories
+      }
+    })
+
+    if (!userExists) {
+      throw new AppError(`Esse id: ${id_categories} não estar vinculado a nem uma categoria, tente outro!`)
+    }
+
+
+    const product = await prisma.product_category_relations.create({
       data: {
+        id,
         products: {
           create: {
+            id,
             name,
             price,
             bar_code,
@@ -66,7 +68,7 @@ export class CreateProductWithExistCategory {
         },
         categories: {
           connect: {
-            id: id_category,
+            id: id_categories,
           },
         },
       },

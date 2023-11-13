@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
-import { CreateProduct } from "./CreateProduct";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient()
 
 export class CreateProductController {
   async handle(request: Request, response: Response) {
@@ -12,23 +14,24 @@ export class CreateProductController {
       description,
       image,
       quantity,
-      amount,
       slug
     } = request.body;
 
-    const createProductCase = new CreateProduct()
 
-    const result = await createProductCase.execute({
-      name,
-      price,
-      bar_code,
-      size,
-      color,
-      description,
-      image,
-      quantity,
-      amount,
-      slug
+    //const createProductCase = new Createproducts()
+
+    const result = await prisma.products.create({
+      data: {
+        name,
+        price,
+        bar_code,
+        size,
+        color,
+        description,
+        image,
+        quantity,
+        slug
+      }
     })
 
     return response.status(200).json(result);

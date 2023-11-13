@@ -3,17 +3,18 @@ import { CreateUser } from "./CreateUsers";
 
 export class ControllerCreate {
   async handle(request: Request, response: Response) {
-    const { name, email, password, access, age, phone } = request.body;
+    const { name, email, password, age, phone, access, image } = request.body;
 
     const createUserCase = new CreateUser()
 
     const result = await createUserCase.execute({
-      name,
-      phone,
-      age,
-      access,
-      email, 
-      password
+      name,    
+      email,  
+      age, 
+      phone,   
+      access, 
+      password,
+      image
     })
 
     return response.status(201).json(result)

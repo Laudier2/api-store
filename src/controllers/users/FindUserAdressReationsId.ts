@@ -5,7 +5,7 @@ export class FindRelationsUserAdressId {
   async handle(request: Request, response: Response) {
     const { id } = request.params;
 
-    const user = await prisma.user.findMany({
+    const user = await prisma.users.findMany({
       where: {
         id: id,
       },

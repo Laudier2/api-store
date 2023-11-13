@@ -2,19 +2,19 @@ import { Router } from "express";
 
 //============== importação de class de controller de Productos =================
 import { CreateProductController } from "../controllers/products/CreateProductController";
-import { CreateUpdateProduct } from "../controllers/products/CreateUpdateProduct";
-import { controllerProductDelete } from "../controllers/products/CreateProductDelete";
-import { controllerCategoryDelete } from "../controllers/products/CreateCategoryDelete";
-import { FindCategoryController } from "../controllers/products/FindCategoryController";
+import { CreateUpdateproducts } from "../controllers/products/CreateUpdateProduct";
+import { controllerproductsDelete } from "../controllers/products/CreateProductDelete";
+import { controllercategoriesDelete } from "../controllers/products/CreateCategoryDelete";
+import { FindcategoriesController } from "../controllers/products/FindCategoryController";
 import { FindCategoryRelation } from "../controllers/products/FindCategorProductRealtion";
-import { FindProductController } from "../controllers/products/FindProductController";
-import { controllerProductCategory } from "../controllers/products/FindProductCategoryId";
-import { controllerProductId } from "../controllers/products/FindProductId";
+import { FindproductsController } from "../controllers/products/FindProductController";
+import { controllerproductsCategory } from "../controllers/products/FindProductCategoryId";
+import { controllerproductsId } from "../controllers/products/FindProductId";
 import { CreateProductCategoryController } from "../controllers/products/CreateProductCategoryController";
-import { CreateCategoryController } from "../controllers/products/CreateCategoryController";
-import { CreateCategoryUpdate } from "../controllers/products/CreateUpdateCategory";
-import { CreateProductWithExistCategory } from "../controllers/products/CreateProductWithExistCategory";
-import { CreateProductWithExistCategoryPut } from "../controllers/products/ControllerProductCategoryPut";
+import { CreatecategoriesController } from "../controllers/products/CreateCategoryController";
+import { CreatecategoriesUpdate } from "../controllers/products/CreateUpdateCategory";
+import { CreateProductWithExistcategories } from "../controllers/products/CreateProductWithExistCategory";
+import { CreateproductsWithExistCategoryPut } from "../controllers/products/ControllerProductCategoryPut";
 
 //============== importação de class de controller de usuarios =================
 import { ControllerCreate } from "../controllers/users/controllerCreateUser";
@@ -41,23 +41,23 @@ const router = Router();//
 
 /* ============================== OBJETO CRIADOS PARA ROTAS ====================== */
 const createProduct = new CreateProductController();
-const findProduct = new FindProductController();
-const createProductDel = new controllerProductDelete();
-const createUpadate = new CreateUpdateProduct();
+const findProduct = new FindproductsController();
+const createProductDel = new controllerproductsDelete();
+const createUpadate = new CreateUpdateproducts();
 
 /* ============================== OBJETO CRIADOS PARA ROTAS DE CATEGORY ====================== */
-const createCategory = new CreateCategoryController();
-const findCategory = new FindCategoryController();
-const createCategoryUpdate = new CreateCategoryUpdate();
+const createCategory = new CreatecategoriesController();
+const findCategory = new FindcategoriesController();
+const createCategoryUpdate = new CreatecategoriesUpdate();
 
 /* ============================== OBJETO CRIADOS PARA ROTAS RELACIONAMENTO ====================== */
-const createCategoryDel = new controllerCategoryDelete();
+const createCategoryDel = new controllercategoriesDelete();
 const findCategoryRelation = new FindCategoryRelation()
 const createProductCategory = new CreateProductCategoryController();
-const createProductCategoryExist = new CreateProductWithExistCategory();
-const createProductCategoryExistPut = new CreateProductWithExistCategoryPut();
-const findProductCategory = new controllerProductCategory();
-const findProductCategoryId = new controllerProductId();
+const createProductCategoryExist = new CreateProductWithExistcategories();
+const createProductCategoryExistPut = new CreateproductsWithExistCategoryPut();
+const findProductCategory = new controllerproductsCategory();
+const findProductCategoryId = new controllerproductsId();
 
 /*=================================== ROTA DE PRODUCT =============================*/
 
@@ -119,11 +119,6 @@ router.put("/adress", updateAdress.handle)
 router.post("/relationuseradress", relationUserAdress.handle)
 router.get("/relationuseradress", findAdressUersRealations.handle)
 router.get("/relationuseradress/:id", findAdressUersRealationsid.handle)
-
-/* ============================= ROTAS DE REATION_USER_ADRESS =============================== */
-router.get('/mcp', (req, res) => {
-    res.status(200).sendFile("index.html")
-})
 
 /* ============================= ROTAS DE REATION_USER_ADRESS =============================== */
 

@@ -8,7 +8,7 @@ datasource db {
 }
 
 model User_Adress {
-  id        String           @id @default(uuid())
+  id        String @id
   id_user   String
   id_adress String
   adress    adress @relation(fields: [id_adress], references: [id])
@@ -16,7 +16,7 @@ model User_Adress {
 }
 
 model adress {
-  id          String         @id @default(uuid())
+  id          String        @id
   name        String
   image       String
   street      String
@@ -33,7 +33,7 @@ model adress {
 }
 
 model categories {
-  id                         String                        @id @default(uuid())
+  id                         String                       @id
   name                       String
   product_category_relations product_category_relations[]
 }
@@ -47,7 +47,7 @@ model product_category_relations {
 }
 
 model products {
-  id                         String                       @id @default(uuid())
+  id                         String                       @id
   name                       String
   bar_code                   String                       @unique
   price                      String
@@ -62,14 +62,13 @@ model products {
 }
 
 model users {
-  id          String         @id @default(uuid())
+  id          String        @id
   name    String
   email       String        @unique
   password    String
-  age       String     
+  age       String
   phone    String
   access    String
-  image    String?
   created_at  DateTime      @default(now())
   update_at   DateTime      @default(now())
   User_Adress User_Adress[]

@@ -6,7 +6,7 @@ export class controllerDelete {
   async handle(request: Request, response: Response) {
     const id = request.params.id;
 
-    const idExists = await prisma.user.findUnique({
+    const idExists = await prisma.users.findUnique({
       where: {
         id: id
       }
@@ -18,7 +18,7 @@ export class controllerDelete {
 
     }
 
-    const user = await prisma.user.delete({
+    const user = await prisma.users.delete({
       where: {
         id: id
       }

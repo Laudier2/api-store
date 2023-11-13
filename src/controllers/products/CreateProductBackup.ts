@@ -1,4 +1,3 @@
-import { AppError } from "../../err/AppErros";
 import { prisma } from "../../prisma_Client_Orm/prismaClient";
 import { CreatProductDTO } from "./dtos/CreatProductDTO";
 
@@ -15,10 +14,8 @@ export class Createproducts {
     slug
   }: CreatProductDTO) {
 
-
     /* Aque abaixo começamos a cria nossa regra de negocio, verificamos se o bar_code existe, ou se o slug ja existe, 
-    se sim, ira mostra uma messagem dizendo que ja isExpressionStatement, se não ele cria o produto*/
-   
+    se sim, ira mostra uma messagem dizendo que ja isExpressionStatement, se não ele cria o produto
 
     if (
       typeof price === 'number' ||
@@ -59,7 +56,7 @@ export class Createproducts {
     })
 
     if (barcodeExists) {
-      return(`\n\n Esse bar_code: ${bar_code} já estar cadastrado em outro produto, tente outro!\n\n `)
+      return (`\n\n Esse bar_code: ${bar_code} já estar cadastrado em outro produto, tente outro!\n\n `)
     }
 
     const slugExists = await prisma.products.findUnique({
@@ -69,8 +66,8 @@ export class Createproducts {
     })
 
     if (slugExists) {
-      return(`Esse slug: ${slug} já estar cadastrado em outro produto, tente outro!\n\n `)
-    }
+      return (`Esse slug: ${slug} já estar cadastrado em outro produto, tente outro!\n\n `)
+    }*/
 
 
     const products = await prisma.products.create({
@@ -87,7 +84,7 @@ export class Createproducts {
       },
     });
 
-
+    
     return products;
   }
 }

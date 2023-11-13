@@ -2,11 +2,11 @@ import { Request, Response } from "express";
 import { AppError } from "../../err/AppErros";
 import { prisma } from "../../prisma_Client_Orm/prismaClient";
 
-export class controllerCategoryDelete {
+export class controllercategoriesDelete {
     async handle(request: Request, response: Response) {
         const id = request.params.id;
 
-        const idExists = await prisma.category.findUnique({
+        const idExists = await prisma.categories.findUnique({
             where: {
                 id: id
             }
@@ -16,7 +16,7 @@ export class controllerCategoryDelete {
             throw new AppError(`Esse id: ${id} não existe mais no database`)
         }
 
-        const product = await prisma.category.delete({
+        const product = await prisma.categories.delete({
             where: {
                 id: id
             }

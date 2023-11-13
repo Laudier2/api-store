@@ -6,7 +6,7 @@ export class UserParamesId {
   async handle(request: Request, response: Response) {
     const { id } = request.params;
 
-    const idExists = await prisma.user.findUnique({
+    const idExists = await prisma.users.findUnique({
       where: {
         id: id
       }
@@ -16,7 +16,7 @@ export class UserParamesId {
       throw new AppError(`Esse id: ${id} não existe mais no database ou você esta usando o id errado!`)
     }
 
-    const user = await prisma.user.findUnique({
+    const user = await prisma.users.findUnique({
       where: {
         id: id
       }

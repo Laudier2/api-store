@@ -2,11 +2,11 @@ import { Request, Response } from "express";
 import { prisma } from "../../prisma_Client_Orm/prismaClient";
 import { AppError } from "../../err/AppErros";
 
-export class CreateProductWithExistCategoryPut {
+export class CreateproductsWithExistCategoryPut {
   async handle(request: Request, response: Response) {
     const { id, name, home, price, bar_code, color, size, quantity, description, image, slug } = request.body;
 
-    const userExists = await prisma.product.findUnique({
+    const userExists = await prisma.products.findUnique({
       where: {
         id: id
       }
@@ -51,7 +51,7 @@ export class CreateProductWithExistCategoryPut {
       })
     }
 
-    const product = await prisma.product.update({
+    const products = await prisma.products.update({
       where: {
         id
       },
@@ -68,6 +68,6 @@ export class CreateProductWithExistCategoryPut {
       }
     });
 
-    return response.json(product);
+    return response.json(products);
   }
 }

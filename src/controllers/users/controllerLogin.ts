@@ -8,7 +8,9 @@ export class ControllerLogin {
   async handle(request: Request, response: Response) {
     const { email, password } = request.body;
 
-    const user = await prisma.user.findUnique({
+    console.log(email, password)
+
+    const user = await prisma.users.findUnique({
       where: {
         email
       }
@@ -33,11 +35,15 @@ export class ControllerLogin {
     const { password: _, ...userLogin } = user
     const msg = { msg: "O token é valido por até 8 horas!" }
 
-    return response.json({
-      user: userLogin,
-      token: token,
-      msg: msg,
-    })
+    try {
+      return response.json({
+        user: userLogin,
+        token: token,
+        msg: msg,
+      })
+    } catch (error) {
+      return message.errr
+    }
 
   }
 }

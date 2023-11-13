@@ -4,23 +4,23 @@ import { CreatAdressDTO } from "./dtos/CreatAdressDTO";
 export class CreateAdress {
 
   async execute({
+    name,
+    phone,
+    image,
     home,
+    street,
     city,
     cep,
-    street,
-    image,
     state,
     number,
     district,
   }: CreatAdressDTO) {
 
-    /*if (
+    if (
       typeof number === 'number' ||
       typeof phone === 'number' ||
       typeof cep === 'number' ||
-      typeof password === 'number' ||
       typeof name === 'number' ||
-      typeof email === 'number' ||
       typeof state === 'number' ||
       typeof street === 'number' ||
       typeof city === 'number' ||
@@ -36,9 +36,7 @@ export class CreateAdress {
       typeof number === 'undefined' ||
       typeof phone === 'undefined' ||
       typeof cep === 'undefined' ||
-      typeof password === 'undefined' ||
       typeof name === 'undefined' ||
-      typeof email === 'undefined' ||
       typeof state === 'undefined' ||
       typeof street === 'undefined' ||
       typeof city === 'undefined' ||
@@ -48,19 +46,21 @@ export class CreateAdress {
       return ({
         msg: `Algum campo esta faltando! Verifique novamente!`
       })
-    }*/
+    }
 
     // Se o Ususario não exite ele cria aqui
     const user = await prisma.adress.create({
       data: {
+        name,
+        phone,
+        image,
         home,
-        number,
-        cep,
         street,
         city,
+        cep,
         state,
-        image,
-        district
+        number,
+        district,
       }
     })
 

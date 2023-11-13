@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { AppError } from "../../err/AppErros";
 import { prisma } from "../../prisma_Client_Orm/prismaClient";
 
-export class CreateUpdateProduct {
+export class CreateUpdateproducts {
   async handle(request: Request, response: Response) {
     const {
       id,
@@ -17,28 +17,8 @@ export class CreateUpdateProduct {
       slug
     } = request.body;
 
-    const barcodeExists = await prisma.product.findUnique({
-      where: {
-        bar_code: bar_code
-      }
-    })
-
-    if (barcodeExists && id !== barcodeExists.id) {
-      throw new AppError(`Esse bar_code: ${bar_code} já estar cadastrado em outro produto, tente outro!`)
-    }
-
-    const slugExists = await prisma.product.findUnique({
-      where: {
-        slug: slug
-      }
-    })
-
-    if (slugExists && id !== slugExists.id) {
-      throw new AppError(`Esse slug: ${slug} já estar cadastrado em outro produto, tente outro!`)
-    }
-
-
     if (
+      typeof id === 'number' ||
       typeof price === 'number' ||
       typeof bar_code === 'number' ||
       typeof color === 'number' ||
@@ -50,11 +30,12 @@ export class CreateUpdateProduct {
       typeof image === 'number'
     ) {
       return response.status(500).json({
-        msg: `Algum campo estar em número! Lembre-se que, todos os campos tem estar em string ok!`
+        msg: `Algum campo estar em número! Lembre-se que, todos os campos tem estar em string ok!  Ou você não passo o id correto.`
       })
     }
 
     if (
+      typeof id === 'undefined' ||
       typeof price === 'undefined' ||
       typeof size === 'undefined' ||
       typeof description === 'undefined' ||
@@ -66,11 +47,32 @@ export class CreateUpdateProduct {
       typeof image === 'undefined'
     ) {
       return response.status(500).json({
-        msg: `Algum campo esta faltando! Verifique novamente!`
+        msg: `Algum campo esta faltando! Verifique novamente! Ou você não passo o id correto.`
       })
     }
 
-    const product = await prisma.product.update({
+    const barcodeExists = await prisma.products.findUnique({
+      where: {
+        bar_code: bar_code
+      }
+    })
+
+    if (barcodeExists && id !== barcodeExists.id) {
+      throw new AppError(`Esse bar_code: ${bar_code} já estar cadastrado em outro produto, tente outro!`)
+    }
+
+    const slugExists = await prisma.products.findUnique({
+      where: {
+        slug: slug
+      }
+    })
+
+    if (slugExists && id !== slugExists.id) {
+      throw new AppError(`Esse slug: ${slug} já estar cadastrado em outro produto, tente outro!`)
+    }
+
+
+    const products = await prisma.products.update({
       where: {
         id: id,
       },
@@ -87,6 +89,6 @@ export class CreateUpdateProduct {
       },
     });
 
-    return response.status(200).json(product);
+    return response.status(200).json(products);
   }
 }

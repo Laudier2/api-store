@@ -1,11 +1,17 @@
 import { Request, Response } from "express";
 import { prisma } from "../../prisma_Client_Orm/prismaClient";
 
-export class FindProductController {
+import { v4 as uuidv4 } from 'uuid';
+
+const uuId = uuidv4()
+
+//console.log(uuId)
+
+export class FindproductsController {
   async handle(request: Request, response: Response) {
 
-    const product = await prisma.product.findMany({});
+    const products = await prisma.products.findMany({});
 
-    return response.json(product);
+    return response.json(products);
   }
 }

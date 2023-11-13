@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { prisma } from "../../prisma_Client_Orm/prismaClient";
 
-export class CreateCategoryUpdate {
+export class CreatecategoriesUpdate {
   async handle(request: Request, response: Response) {
     const { id, name } = request.body;
 
-    const category = await prisma.category.update({
+    const categories = await prisma.categories.update({
       where: {
         id: id,
       },
@@ -14,6 +14,6 @@ export class CreateCategoryUpdate {
       }
     });
 
-    return response.json(category);
+    return response.json(categories);
   }
 }

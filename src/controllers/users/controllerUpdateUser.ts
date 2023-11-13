@@ -8,73 +8,74 @@ export class controllerUpdate {
     const {
       id,
       email,
-      password
+      phone,
+      password,
+      name,
+      age,
+      access,
+      image
     } = request.body;
 
     const cryptPass = await bcrypt.hash(password, 8)
 
-    const userExists = await prisma.user.findUnique({
+    const userExists = await prisma.users.findUnique({
       where: {
-        email: email
+        email
       }
     })
 
     //const res = !!userExists?.id
 
-    console.log(id)
+    const email1 = JSON.stringify(userExists?.email)
+    const email2 = JSON.parse(email1)
 
-    if (userExists && userExists?.id !== id) {
-      throw new AppError(`O email ${email} já existe!  E lembre-se que, todos os campos tem que ser string ok!`)
+    console.log(email2)
+
+    if (userExists) {
+      throw new AppError(`O email ${email} já existe cadastrado com outro ususario tente outro!  E lembre-se que, todos os campos tem que ser string ok!`)
     }
 
-    if (typeof id === "undefined") {
-      return response.status(400).json({
-        msg: `O id: ${id === undefined ? "Você não inserio nem um id!" : id} não existe, ou não esta vinculado a nem um usuário, tente outro!`
-      })
-    }
-
-
-    /*if (
-      typeof number === 'number' ||
-      typeof phone === 'number' ||
-      typeof cep === 'number' ||
+    if (
+      typeof id === 'number' ||
       typeof password === 'number' ||
       typeof name === 'number' ||
       typeof email === 'number' ||
-      typeof state === 'number' ||
-      typeof street === 'number' ||
-      typeof home === 'number' ||
-      typeof city === 'number' ||
+      typeof age === 'number' ||
+      typeof access === 'number' ||
+      typeof phone === 'number' ||
       typeof image === 'number'
     ) {
       return response.status(500).json({
-        msg: `Algum campo esta faltando ou estão em números! Lembre-se que, todos os campos tem que estar em string ok!`
+        msg: `Algum campo esta faltando ou estão em números! Lembre-se que, todos os campos tem que estar em string ok!  Ou você não passo o id correto.`
       })
     }
 
     if (
-      typeof number === 'undefined' ||
-      typeof phone === 'undefined' ||
-      typeof cep === 'undefined' ||
-      typeof password === 'undefined' ||
+      typeof id === 'undefined' ||
       typeof name === 'undefined' ||
       typeof email === 'undefined' ||
-      typeof state === 'undefined' ||
-      typeof street === 'undefined' ||
-      typeof home === 'undefined' ||
-      typeof city === 'undefined' ||
+      typeof age === 'undefined' ||
+      typeof password === 'undefined' ||
+      typeof name === 'undefined' ||
+      typeof access === 'undefined' ||
+      typeof phone === 'undefined' ||
       typeof image === 'undefined'
     ) {
       return response.status(500).json({
         msg: `Algum campo esta faltando! E lembre-se que todos os campos tem que ser string ok!`
       })
-    }*/
+    }
 
-    const user = await prisma.user.update({
+    const user = await prisma.users.update({
       where: {
         id: id,
       },
       data: {
+        name,
+        age,
+        access,
+        phone,
+        image,
         email,
         password: cryptPass
       }

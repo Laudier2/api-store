@@ -21,7 +21,7 @@ export class ControllerAuth {
 
     const { id } = jwt.verify(token, process.env.APP_KEY ?? '') as JwtPayload
 
-    const user = await prisma.user.findFirst({
+    const user = await prisma.users.findFirst({
       where: {
         id
       }
