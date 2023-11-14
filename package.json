@@ -44,6 +44,9 @@
     "type": "git",
     "url": "git+https://github.com/Laudier2/api-store.git"
   },
+    "engines": { 
+    "node": "18.13.0" 
+  },
   "author": "",
   "license": "ISC",
   "bugs": {
