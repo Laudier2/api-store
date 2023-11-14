@@ -5,13 +5,10 @@ export class UpdateAdress {
 
   async execute({
     id,
-    name,
-    home,
-    phone,
+    apartment_or_house,
+    street,
     city,
     cep,
-    street,
-    image,
     state,
     number,
     district,
@@ -19,15 +16,12 @@ export class UpdateAdress {
 
     if (
       typeof number === 'number' ||
-      typeof phone === 'number' ||
+      typeof apartment_or_house === 'number' ||
       typeof cep === 'number' ||
       typeof district === 'number' ||
-      typeof name === 'number' ||
       typeof state === 'number' ||
       typeof street === 'number' ||
-      typeof city === 'number' ||
-      typeof home === 'number' ||
-      typeof image === 'number'
+      typeof city === 'number' 
     ) {
       return ({
         msg: `Algum campo estar em número! Lembre-se que, todos os campos tem estar em string ok!`
@@ -36,15 +30,12 @@ export class UpdateAdress {
 
     if (
       typeof number === 'undefined' ||
-      typeof phone === 'undefined' ||
+      typeof apartment_or_house === 'undefined' ||
       typeof cep === 'undefined' ||
       typeof district === 'undefined' ||
-      typeof name === 'undefined' ||
       typeof state === 'undefined' ||
       typeof street === 'undefined' ||
-      typeof city === 'undefined' ||
-      typeof home === 'undefined' ||
-      typeof image === 'undefined'
+      typeof city === 'undefined'
     ) {
       return ({
         msg: `Algum campo esta faltando! Verifique novamente!`
@@ -57,16 +48,13 @@ export class UpdateAdress {
         id: id,
       },
       data: {
-        name,
-        home,
-        phone,
-        number,
-        cep,
+        apartment_or_house,
         street,
         city,
+        cep,
         state,
-        image,
-        district
+        number,
+        district,
       }
     })
 

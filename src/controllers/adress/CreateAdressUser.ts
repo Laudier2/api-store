@@ -4,10 +4,7 @@ import { CreateAdress } from "./CreateAdress";
 export class CreateAdressUser {
   async handle(request: Request, response: Response) {
     const { 
-      name,
-      phone,
-      image,
-      home,
+      apartment_or_house,
       street,
       city,
       cep,
@@ -18,10 +15,7 @@ export class CreateAdressUser {
     const createUserCase = new CreateAdress()
 
     const result = await createUserCase.execute({
-      name,
-      phone,
-      image,
-      home,
+      apartment_or_house,
       street,
       city,
       cep,

@@ -1,8 +1,5 @@
 export interface CreatAdressDTO {
-    name: string;
-    phone: string;
-    image: string;
-    home: string;
+    apartment_or_house: string;
     street: string;
     city: string;
     cep: string;

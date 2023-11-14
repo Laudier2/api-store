@@ -4,11 +4,8 @@ import { CreatAdressDTO } from "./dtos/CreatAdressDTO";
 export class CreateAdress {
 
   async execute({
-    name,
-    phone,
-    image,
-    home,
     street,
+    apartment_or_house,
     city,
     cep,
     state,
@@ -18,14 +15,12 @@ export class CreateAdress {
 
     if (
       typeof number === 'number' ||
-      typeof phone === 'number' ||
+      typeof apartment_or_house === 'number' ||
       typeof cep === 'number' ||
-      typeof name === 'number' ||
       typeof state === 'number' ||
       typeof street === 'number' ||
       typeof city === 'number' ||
-      typeof home === 'number' ||
-      typeof image === 'number'
+      typeof district === 'number' 
     ) {
       return ({
         msg: `Algum campo estar em número! Lembre-se que, todos os campos tem estar em string ok!`
@@ -34,14 +29,13 @@ export class CreateAdress {
 
     if (
       typeof number === 'undefined' ||
-      typeof phone === 'undefined' ||
+      typeof apartment_or_house === 'undefined' ||
       typeof cep === 'undefined' ||
       typeof name === 'undefined' ||
       typeof state === 'undefined' ||
       typeof street === 'undefined' ||
       typeof city === 'undefined' ||
-      typeof home === 'undefined' ||
-      typeof image === 'undefined'
+      typeof district === 'undefined'
     ) {
       return ({
         msg: `Algum campo esta faltando! Verifique novamente!`
@@ -51,10 +45,7 @@ export class CreateAdress {
     // Se o Ususario não exite ele cria aqui
     const user = await prisma.adress.create({
       data: {
-        name,
-        phone,
-        image,
-        home,
+        apartment_or_house,
         street,
         city,
         cep,

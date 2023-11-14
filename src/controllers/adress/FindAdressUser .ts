@@ -4,24 +4,19 @@ import { FindAdress } from "./FindAdress ";
 export class FindAdressUser {
   async handle(request: Request, response: Response) {
     const {  
-      name,
-      phone,
-      image,
-      home,
+      apartment_or_house,
       street,
       city,
       cep,
       state,
       number,
-      district, } = request.body;
+      district, 
+    } = request.body;
 
     const createUserCase = new FindAdress()
 
     const result = await createUserCase.execute({
-      name,
-      phone,
-      image,
-      home,
+      apartment_or_house,
       street,
       city,
       cep,

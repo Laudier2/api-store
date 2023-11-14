@@ -1,38 +1,38 @@
 import { Router } from "express";
 
 //============== importação de class de controller de Productos =================
-import { CreateProductController } from "../controllers/products/CreateProductController";
-import { CreateUpdateproducts } from "../controllers/products/CreateUpdateProduct";
-import { controllerproductsDelete } from "../controllers/products/CreateProductDelete";
-import { controllercategoriesDelete } from "../controllers/products/CreateCategoryDelete";
-import { FindcategoriesController } from "../controllers/products/FindCategoryController";
-import { FindCategoryRelation } from "../controllers/products/FindCategorProductRealtion";
-import { FindproductsController } from "../controllers/products/FindProductController";
-import { controllerproductsCategory } from "../controllers/products/FindProductCategoryId";
-import { controllerproductsId } from "../controllers/products/FindProductId";
-import { CreateProductCategoryController } from "../controllers/products/CreateProductCategoryController";
-import { CreatecategoriesController } from "../controllers/products/CreateCategoryController";
-import { CreatecategoriesUpdate } from "../controllers/products/CreateUpdateCategory";
-import { CreateProductWithExistcategories } from "../controllers/products/CreateProductWithExistCategory";
-import { CreateproductsWithExistCategoryPut } from "../controllers/products/ControllerProductCategoryPut";
+import { CreateProductController } from "../controllers/controllerProducts/CreateProductController";
+import { CreateUpdateproducts } from "../controllers/controllerProducts/CreateUpdateProduct";
+import { controllerproductsDelete } from "../controllers/controllerProducts/CreateProductDelete";
+import { controllercategoriesDelete } from "../controllers/controllerProducts/CreateCategoryDelete";
+import { FindcategoriesController } from "../controllers/controllerProducts/FindCategoryController";
+import { FindCategoryRelation } from "../controllers/controllerProducts/FindCategorProductRealtion";
+import { FindproductsController } from "../controllers/controllerProducts/FindProductController";
+import { controllerproductsCategory } from "../controllers/controllerProducts/FindProductCategoryId";
+import { controllerproductsId } from "../controllers/controllerProducts/FindProductId";
+import { CreateProductCategoryController } from "../controllers/controllerProducts/CreateProductCategoryController";
+import { CreatecategoriesController } from "../controllers/controllerProducts/CreateCategoryController";
+import { CreatecategoriesUpdate } from "../controllers/controllerProducts/CreateUpdateCategory";
+import { CreateProductWithExistcategories } from "../controllers/controllerProducts/CreateProductWithExistCategory";
+import { CreateproductsWithExistCategoryPut } from "../controllers/controllerProducts/ControllerProductCategoryPut";
 
 //============== importação de class de controller de usuarios =================
-import { ControllerCreate } from "../controllers/users/controllerCreateUser";
-import { ControllerFind } from "../controllers/users/controllerFindUser";
-import { controllerUpdate } from "../controllers/users/controllerUpdateUser";
-import { controllerDelete } from "../controllers/users/controllerDeleteUser";
-import { ControllerAuth } from "../controllers/users/controllerAuth";
-import { ControllerLogin } from "../controllers/users/controllerLogin";
-import { UserParamesId } from "../controllers/users/controllerParamesIdFindUser";
-import { ControllerFindAdressUser } from "../controllers/users/controllerFindUserAdress";
+import { ControllerCreate } from "../controllers/controllerUsers/controllerCreateUser";
+import { ControllerFind } from "../controllers/controllerUsers/controllerFindUser";
+import { controllerUpdate } from "../controllers/controllerUsers/controllerUpdateUser";
+import { controllerDelete } from "../controllers/controllerUsers/controllerDeleteUser";
+import { ControllerAuth } from "../controllers/controllerUsers/controllerAuth";
+import { ControllerLogin } from "../controllers/controllerUsers/controllerLogin";
+import { UserParamesId } from "../controllers/controllerUsers/controllerParamesIdFindUser";
+import { ControllerFindAdressUser } from "../controllers/controllerUsers/controllerFindUserAdress";
 
 //============== importação de class de controller de adress =================
 import { CreateAdressUser } from "../controllers/adress/CreateAdressUser";
 import { FindAdressUser } from "../controllers/adress/FindAdressUser ";
 import { UpdateAdressUser } from "../controllers/adress/UpdateAdressUser";
-import { ControllerRelationsUserAdress } from "../controllers/users/CreateRealationsUserAdress";
-import { FindRelationsUserAdress } from "../controllers/users/FindUserAdressReations";
-import { FindRelationsUserAdressId } from "../controllers/users/FindUserAdressReationsId";
+import { ControllerRelationsUserAdress } from "../controllers/controllerUsers/CreateRealationsUserAdress";
+import { FindRelationsUserAdress } from "../controllers/controllerUsers/FindUserAdressReations";
+import { FindRelationsUserAdressId } from "../controllers/controllerUsers/FindUserAdressReationsId";
 
 //Mercado pago
 import MercadoPagoPayment from "../controllers/mercadoPagoPayment/MercadoPagoPayment";
@@ -58,6 +58,19 @@ const createProductCategoryExist = new CreateProductWithExistcategories();
 const createProductCategoryExistPut = new CreateproductsWithExistCategoryPut();
 const findProductCategory = new controllerproductsCategory();
 const findProductCategoryId = new controllerproductsId();
+
+/* ================================= CONTROLLERS COMPRA ================================ */
+import { ControllerCompra } from "../controllers/controllerCompra/controllerCompraCreate"; 
+import { ControllerCompraFind } from "../controllers/controllerCompra/controllerCompraFind";
+import { ControllerCompraUpdate } from "../controllers/controllerCompra/controllerCompraUpdate";
+import { ControllerCompraDelete } from "../controllers/controllerCompra/controllerCompraDelete";
+import { ControllerCompraRelations } from "../controllers/controllerCompra/controllerCompraRelations";
+
+const createCompra = new ControllerCompra()
+const createCompraFind = new ControllerCompraFind()
+const createCompraUpdate = new ControllerCompraUpdate()
+const createCompraDelete = new ControllerCompraDelete()
+const createCompraRealtion = new ControllerCompraRelations()
 
 /*=================================== ROTA DE PRODUCT =============================*/
 
@@ -119,6 +132,13 @@ router.put("/adress", updateAdress.handle)
 router.post("/relationuseradress", relationUserAdress.handle)
 router.get("/relationuseradress", findAdressUersRealations.handle)
 router.get("/relationuseradress/:id", findAdressUersRealationsid.handle)
+
+/* ============================= ROTAS DE ACESSO =============================== */
+router.post("/compra", createCompra.handle);
+router.post("/comprarelations", createCompraRealtion.handle);
+router.get("/compra", createCompraFind.handle);
+router.put("/compraupdate", createCompraUpdate.handle);
+router.delete("/compra/:id", createCompraDelete.handle);
 
 /* ============================= ROTAS DE REATION_USER_ADRESS =============================== */
 
