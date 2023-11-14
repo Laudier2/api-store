@@ -111,7 +111,7 @@ router.post("/login", loginUser.handle);
 //router.use(authUser.handle);
 router.put("/user", updateUser.handle);
 router.delete("/user/:id", deleteUser.handle);
-router.get("/user", findUser.handle);
+router.get("/", findUser.handle);
 router.get("/usersadress", findUserAdress.handle);
 router.get("/user/:id", findUserId.handle);
 
@@ -144,7 +144,7 @@ router.delete("/compra/:id", createCompraDelete.handle);
 
 router.post('/payment', MercadoPagoPayment)
 
-router.get("/", (req, res) => {
+router.get("/adress", (req, res) => {
     res.status(200).send(
         `
         <h1 style="text-align: center; color: blue; font-size: 50px">Pagamento com mercado pago</h1>
