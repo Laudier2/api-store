@@ -144,7 +144,7 @@ router.delete("/compra/:id", createCompraDelete.handle);
 
 router.post('/payment', MercadoPagoPayment)
 
-router.get("/payment", (req, res) => {
+router.get("/", (req, res) => {
     res.status(200).send(
         `
         <h1 style="text-align: center; color: blue; font-size: 50px">Pagamento com mercado pago</h1>
