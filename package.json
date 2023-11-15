@@ -4,11 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./src/index.ts",
-    "dev:2": "node --trace-warnings ./src/index.ts",
-    "start": "node --trace-warnings ./dist/index.js",
-    "stop": "pm2 stop ./dist/index.js",
-    "postinstall": "rm -r ./dist && tsc",
+    "build": "tsc",
+    "start": "node ./dist/index.js",
     "test": "jest --watch"
   },
   "dependencies": {
