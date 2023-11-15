@@ -111,7 +111,7 @@ router.post("/login", loginUser.handle);
 //router.use(authUser.handle);
 router.put("/user", updateUser.handle);
 router.delete("/user/:id", deleteUser.handle);
-router.get("/", findUser.handle);
+router.get("/user", findUser.handle);
 router.get("/usersadress", findUserAdress.handle);
 router.get("/user/:id", findUserId.handle);
 
@@ -144,10 +144,10 @@ router.delete("/compra/:id", createCompraDelete.handle);
 
 router.post('/payment', MercadoPagoPayment)
 
-router.get("/adress", (req, res) => {
+router.get("/", (req, res) => {
     res.status(200).send(
         `
-        <h1 style="text-align: center; color: blue; font-size: 50px">Pagamento com mercado pago</h1>
+        <h1 style="text-align: center; color: #00BFFF; font-size: 50px">Pagamento com mercado pago</h1>
         <hr/>
         <img style="margin: auto; dispaly: flex; width: 100%" src="https://s2-techtudo.glbimg.com/cBzv_-VyoyirkotBx76jb_m-FQA=/0x0:620x304/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2021/M/n/z8weK8QpCWDfcY8KFx4w/2013-08-27-mp.jpg" alt="img" />
         `
