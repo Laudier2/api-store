@@ -18,19 +18,6 @@ export class controllerUpdate {
 
     const cryptPass = await bcrypt.hash(password, 8)
 
-    const userExists = await prisma.user.findUnique({
-      where: {
-        email
-      }
-    })
-
-    //const res = !!userExists?.id
-
-    const email1 = JSON.stringify(userExists?.email)
-    const email2 = JSON.parse(email1)
-
-    console.log(email2)
-
     if (userExists) {
       throw new AppError(`O email ${email} já existe cadastrado com outro ususario tente outro!  E lembre-se que, todos os campos tem que ser string ok!`)
     }
