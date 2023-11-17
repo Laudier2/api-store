@@ -18,10 +18,6 @@ export class controllerUpdate {
 
     const cryptPass = await bcrypt.hash(password, 8)
 
-    if (userExists) {
-      throw new AppError(`O email ${email} já existe cadastrado com outro ususario tente outro!  E lembre-se que, todos os campos tem que ser string ok!`)
-    }
-
     if (
       typeof id === 'number' ||
       typeof password === 'number' ||
