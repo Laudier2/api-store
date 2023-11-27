@@ -3,7 +3,7 @@ import { prisma } from "../../prisma_Client_Orm/prismaClient";
 
 export class ControllerCompra {
   async handle(request: Request, response: Response) {
-    const { city, cep, street, state, number, district, apartment_or_house, email, name, phone } = request.body;
+    const { city, cep, product, street, state, number, district, apartment_or_house, email, name, phone, code_compra } = request.body;
     
     if(
       typeof number === 'number' || 
@@ -15,6 +15,7 @@ export class ControllerCompra {
       typeof name === 'number' ||
       typeof email === 'number' ||
       typeof phone === 'number' ||
+      typeof product === 'number' ||
       typeof city === 'number'
     ){
       return response.status(501).json({
@@ -29,8 +30,10 @@ export class ControllerCompra {
         typeof apartment_or_house === 'undefined' ||
         typeof district === 'undefined' ||
         typeof city === 'undefined' || 
+        typeof product === 'undefined' || 
         typeof name === 'undefined' ||
         typeof email === 'undefined' ||
+        typeof code_compra === 'undefined' ||
         typeof phone === 'undefined'
     ){
       return response.status(500).json({
@@ -50,6 +53,8 @@ export class ControllerCompra {
         cep, 
         number, 
         state,
+        product,
+        code_compra
       }
     })
     
