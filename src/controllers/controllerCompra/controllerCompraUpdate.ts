@@ -15,6 +15,7 @@ export class ControllerCompraUpdate {
       cep, 
       number, 
       state,
+      code_compra
     } = request.body;
 
 
@@ -50,6 +51,7 @@ export class ControllerCompraUpdate {
         typeof city === 'undefined' || 
         typeof name === 'undefined' ||
         typeof email === 'undefined' ||
+        typeof code_compra === 'undefined' ||
         typeof phone === 'undefined'
     ){
       return response.status(500).json({
@@ -71,7 +73,8 @@ export class ControllerCompraUpdate {
         city, 
         cep, 
         number, 
-        state
+        state,
+        code_compra
       }
     })
     
