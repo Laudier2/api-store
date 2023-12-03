@@ -97,6 +97,7 @@ model Compra {
   cep                 String
   number              String
   district            String
+  productslist        String[]
   code_compra         String
   apartment_or_house  String
   created_at          DateTime          @default(now())

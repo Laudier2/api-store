@@ -37,3 +37,4 @@ export class ControllerCompraRelations {
     return response.json(compraRelations);
   }
 }
+

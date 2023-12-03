@@ -3,7 +3,7 @@ import { prisma } from "../../prisma_Client_Orm/prismaClient";
 
 export class ControllerCompra {
   async handle(request: Request, response: Response) {
-    const { city, cep, street, state, number, district, apartment_or_house, email, name, phone, code_compra } = request.body;
+    const { city, cep, street, state, number, district, apartment_or_house, productslist, email, name, phone, code_compra } = request.body;
     
     if(
       typeof number === 'number' || 
@@ -13,6 +13,7 @@ export class ControllerCompra {
       typeof apartment_or_house === 'number' ||
       typeof district === 'number' ||
       typeof name === 'number' ||
+      typeof productslist === 'number' ||
       typeof email === 'number' ||
       typeof phone === 'number' ||
       typeof city === 'number'
@@ -30,6 +31,7 @@ export class ControllerCompra {
         typeof district === 'undefined' ||
         typeof city === 'undefined' || 
         typeof name === 'undefined' ||
+        typeof productslist === 'undefined' ||
         typeof email === 'undefined' ||
         typeof code_compra === 'undefined' ||
         typeof phone === 'undefined'
@@ -50,11 +52,12 @@ export class ControllerCompra {
         city, 
         cep, 
         number, 
+        productslist,
         state,
         code_compra
       }
     })
     
-    return response.status(201).json({ message: 'Adress2 create susserful ', compra})
+    return response.status(201).json({ message: 'Compra criada com sucesso', compra})
   }
 }

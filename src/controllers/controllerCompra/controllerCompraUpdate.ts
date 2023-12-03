@@ -11,6 +11,7 @@ export class ControllerCompraUpdate {
       district, 
       apartment_or_house, 
       street, 
+      productslist,
       city, 
       cep, 
       number, 
@@ -33,6 +34,7 @@ export class ControllerCompraUpdate {
       typeof apartment_or_house === 'number' ||
       typeof district === 'number' ||
       typeof name === 'number' ||
+      typeof productslist === 'number' ||
       typeof email === 'number' ||
       typeof phone === 'number' ||
       typeof city === 'number'
@@ -50,6 +52,7 @@ export class ControllerCompraUpdate {
         typeof district === 'undefined' ||
         typeof city === 'undefined' || 
         typeof name === 'undefined' ||
+        typeof productslist === 'undefined' ||
         typeof email === 'undefined' ||
         typeof code_compra === 'undefined' ||
         typeof phone === 'undefined'
@@ -59,7 +62,7 @@ export class ControllerCompraUpdate {
       })
     }   
 
-    const user = await prisma.compra.update({
+    const compraUpdate = await prisma.compra.update({
       where: {
         id: id,
       },
@@ -72,55 +75,13 @@ export class ControllerCompraUpdate {
         street, 
         city, 
         cep, 
+        productslist,
         number, 
         state,
         code_compra
       }
     })
     
-    return response.status(201).json(user)
-  }
-}
-
-export class ControllerCompraUpdateAdress {
-  
-  async handle(request: Request, response: Response) {
-    const { 
-      id,
-      district, 
-      apartment_or_house, 
-      street, 
-      city, 
-      cep, 
-      state,
-      number,
-      id_user
-    } = request.body;
-
-    const adress2 = await prisma.relationsAdress.update({
-      where: {
-        id: id,
-      },
-      data: {
-        adress2: {
-          update: {
-            district, 
-            apartment_or_house, 
-            street, 
-            city, 
-            cep, 
-            number,
-            state 
-          }
-        },
-        user: {
-          connect: {
-            id: id_user
-          }
-        }
-      }      
-    })
-    
-    return response.status(201).json({ message: `${adress2}`})
+    return response.status(201).json(compraUpdate)
   }
 }

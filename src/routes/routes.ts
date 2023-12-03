@@ -65,11 +65,15 @@ import { ControllerCompraFind } from "../controllers/controllerCompra/controller
 import { ControllerCompraUpdate } from "../controllers/controllerCompra/controllerCompraUpdate";
 import { ControllerCompraDelete } from "../controllers/controllerCompra/controllerCompraDelete";
 import { ControllerCompraRelations } from "../controllers/controllerCompra/controllerCompraRelations";
+import { ControllerCompraRelationsDel } from "../controllers/controllerCompra/controllerCompraRelationsDelete"; 
+import { ControllerCompraFindRelations } from "../controllers/controllerCompra/controllerCompraFindRelation";
 
 const createCompra = new ControllerCompra()
 const createCompraFind = new ControllerCompraFind()
+const createCompraFindRelations = new ControllerCompraFindRelations()
 const createCompraUpdate = new ControllerCompraUpdate()
 const createCompraDelete = new ControllerCompraDelete()
+const createDeleteRelation = new ControllerCompraRelationsDel()
 const createCompraRealtion = new ControllerCompraRelations()
 
 /*=================================== ROTA DE PRODUCT =============================*/
@@ -136,9 +140,11 @@ router.get("/relationuseradress/:id", findAdressUersRealationsid.handle)
 /* ============================= ROTAS DE ACESSO =============================== */
 router.post("/compra", createCompra.handle);
 router.post("/comprarelations", createCompraRealtion.handle);
+router.get("/comprarelations", createCompraFindRelations.handle);
 router.get("/compra", createCompraFind.handle);
 router.put("/compraupdate", createCompraUpdate.handle);
 router.delete("/compra/:id", createCompraDelete.handle);
+router.delete("/comprarelations/:id", createDeleteRelation.handle);
 
 /* ============================= ROTAS DE REATION_USER_ADRESS =============================== */
 
@@ -157,7 +163,8 @@ router.get("/", (req, res) => {
             <li style="background-color: aqua; font-weight: bold; font-size: large 15px; margin: 10px; display: inline-block; padding: 10px; border-radius: 6px; border: solid 1px; text-decoration: none;">
                 <a href="/adress">GET endereços: Lista todos os endereços na base de dados!</a></li>
             <li style="background-color: aqua; font-weight: bold; font-size: large 15px; margin: 10px; display: inline-block; padding: 10px; border-radius: 6px; border: solid 1px; text-decoration: none;">
-                <a href="/compra">GET compras: Lista todos as compras na base de dados!</a></li>
+                <a href="/compra">GET compras: Lista todos as compras na base de dados!</a>
+            </li>
         </ul>
         <img style="margin: auto; dispaly: flex; width: 100%" src="https://s2-techtudo.glbimg.com/cBzv_-VyoyirkotBx76jb_m-FQA=/0x0:620x304/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2021/M/n/z8weK8QpCWDfcY8KFx4w/2013-08-27-mp.jpg" alt="img" />
         `

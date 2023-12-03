@@ -17,38 +17,13 @@ export class ControllerCompraDelete {
       })
     }  
 
-    const adress = await prisma.compra.delete({     
+    const compra = await prisma.compra.delete({     
         where: {
           id: id
         }
       })
 
-    return response.json({msg: "Usuario deletado com sucesso!", adress});
+    return response.json({msg: "Usuario deletado com sucesso!", compra});
   }
 }
 
-export class ControllerAdressDeleteRelation {
-  async handle(request: Request, response: Response) {
-    const { id } = request.params;
-
-    const idExists = await prisma.relationsAdress.findUnique({
-      where: {
-        id: id
-      }
-    })
-
-    if(!idExists){
-      return response.status(400).json({
-        msg: `Esse id: ${id} não existe mais no database`
-      })
-    }  
-
-    const adress = await prisma.relationsAdress.delete({     
-        where: {
-          id: id
-        }
-      })
-
-    return response.json({msg: "Usuario deletado com sucesso!", adress});
-  }
-}
