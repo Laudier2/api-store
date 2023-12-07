@@ -24,6 +24,7 @@
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^9.0.0",
     "mercadopago": "^1.5.17",
+    "mp-webhook-portable": "^1.2.8",
     "nodemon": "^3.0.1",
     "pm2": "^4.2.3",
     "sucrase": "^3.27.0",
@@ -42,8 +43,8 @@
     "type": "git",
     "url": "git+https://github.com/Laudier2/api-store.git"
   },
-    "engines": { 
-    "node": "18.13.0" 
+  "engines": {
+    "node": "18.13.0"
   },
   "author": "",
   "license": "ISC",

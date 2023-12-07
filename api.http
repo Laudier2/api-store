@@ -1,0 +1,7 @@
+GET http://localhost:3003/compra
+
+//GET http://localhost:3003/product
+//
+//GET http://localhost:3003/user
+//
+//GET http://localhost:3003/compra
