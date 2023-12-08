@@ -23,10 +23,13 @@ export default function MercadoPagoPayment(req: Request, res: Response) {
                 unit_price: prod.price,
             },
         ],
-        back_urls: {
-            success: "https://topshoping.netlify.app/",
+        /*success: "https://topshoping.netlify.app/",
             failure: "https://topshoping.netlify.app/",
-            pending: "https://topshoping.netlify.app/",
+            pending: "https://topshoping.netlify.app/",*/
+        back_urls: {
+            success: "http:localhost:3000",
+            failure: "http://localhost:3000",
+            pending: "http:localhost:3000",
         },
         auto_return: "approved",
         binary_node: true,
