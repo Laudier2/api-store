@@ -7,10 +7,11 @@ import { controllerproductsDelete } from "../controllers/controllerProducts/Crea
 import { controllercategoriesDelete } from "../controllers/controllerProducts/CreateCategoryDelete";
 import { FindcategoriesController } from "../controllers/controllerProducts/FindCategoryController";
 import { FindCategoryRelation } from "../controllers/controllerProducts/FindCategorProductRealtion";
+import { FindcategoriesControllerId } from "../controllers/controllerProducts/FindCategoryControllerId"; 
 import { FindproductsController } from "../controllers/controllerProducts/FindProductController";
 import { controllerproductsCategory } from "../controllers/controllerProducts/FindProductCategoryId";
 import { controllerproductsId } from "../controllers/controllerProducts/FindProductId";
-import { CreateProductCategoryController } from "../controllers/controllerProducts/CreateProductCategoryController";
+import { CreateProductCategoryRelation } from "../controllers/controllerProducts/CreateProductCategoryRelation";
 import { CreatecategoriesController } from "../controllers/controllerProducts/CreateCategoryController";
 import { CreatecategoriesUpdate } from "../controllers/controllerProducts/CreateUpdateCategory";
 import { CreateProductWithExistcategories } from "../controllers/controllerProducts/CreateProductWithExistCategory";
@@ -53,7 +54,8 @@ const createCategoryUpdate = new CreatecategoriesUpdate();
 /* ============================== OBJETO CRIADOS PARA ROTAS RELACIONAMENTO ====================== */
 const createCategoryDel = new controllercategoriesDelete();
 const findCategoryRelation = new FindCategoryRelation()
-const createProductCategory = new CreateProductCategoryController();
+const findCategoryRelationId = new FindcategoriesControllerId()
+const createProductCategory = new CreateProductCategoryRelation();
 const createProductCategoryExist = new CreateProductWithExistcategories();
 const createProductCategoryExistPut = new CreateproductsWithExistCategoryPut();
 const findProductCategory = new controllerproductsCategory();
@@ -92,6 +94,7 @@ router.put("/category", createCategoryUpdate.handle);
 
 /*=================================== ROTA DE REALACIONAMENTO =============================*/
 router.delete("/category/:id", createCategoryDel.handle);
+router.get("/category/:id", findCategoryRelationId.handle);
 router.get("/categorypr", findCategoryRelation.handle);
 router.post("/categorypr", createProductCategory.handle);
 router.post("/productwithcategory", createProductCategoryExist.handle);

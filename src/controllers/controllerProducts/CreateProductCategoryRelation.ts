@@ -1,8 +1,9 @@
+import { Request, Response } from "express";
 import { prisma } from "../../prisma_Client_Orm/prismaClient";
-import { CreatProducRelationtDTO } from "./dtos/CreatProductRelationDTO";
 
 export class CreateProductCategoryRelation {
-  async execute({ id_product, id_category, id }: CreatProducRelationtDTO) {
+  async handle(request: Request, response: Response) {
+    const {id_category, id_product,} = request.body;
 
     if (
       typeof id_category === 'number' ||
@@ -28,7 +29,6 @@ export class CreateProductCategoryRelation {
 
     const productCategory = await prisma.product_Category.create({
       data: {
-        id,
         id_category,
         id_product,
       },
