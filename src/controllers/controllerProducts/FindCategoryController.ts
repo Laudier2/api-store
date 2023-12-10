@@ -5,7 +5,18 @@ export class FindcategoriesController {
   async handle(request: Request, response: Response) {
     const { name } = request.body;
 
-    const categories = await prisma.category.findMany({})
+    const categories = await prisma.category.findMany({
+      where: {
+        name: name,
+      },
+      include: {
+        products_categories: {
+          include: {
+            products: true
+          }
+        }
+      }
+    })
 
     return response.status(200).json(categories);
   }
