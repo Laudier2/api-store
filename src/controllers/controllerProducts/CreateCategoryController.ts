@@ -3,11 +3,10 @@ import { prisma } from "../../prisma_Client_Orm/prismaClient";
 
 export class CreatecategoriesController {
   async handle(request: Request, response: Response) {
-    const { name, id } = request.body;
+    const { name } = request.body;
 
     const categories = await prisma.category.create({
       data: {
-        id,
         name,
       },
     });
