@@ -16,6 +16,7 @@ import { CreatecategoriesController } from "../controllers/controllerProducts/Cr
 import { CreatecategoriesUpdate } from "../controllers/controllerProducts/CreateUpdateCategory";
 import { CreateProductWithExistcategories } from "../controllers/controllerProducts/CreateProductWithExistCategory";
 import { CreateproductsWithExistCategoryPut } from "../controllers/controllerProducts/ControllerProductCategoryPut";
+import { ControllerCategoryDeleteRelations } from "../controllers/controllerProducts/CreateCategoryDeleteRelations";
 
 //============== importação de class de controller de usuarios =================
 import { ControllerCreate } from "../controllers/controllerUsers/controllerCreateUser";
@@ -50,6 +51,7 @@ const createUpadate = new CreateUpdateproducts();
 const createCategory = new CreatecategoriesController();
 const findCategory = new FindcategoriesController();
 const createCategoryUpdate = new CreatecategoriesUpdate();
+const createCategoryDeleteR = new ControllerCategoryDeleteRelations();
 
 /* ============================== OBJETO CRIADOS PARA ROTAS RELACIONAMENTO ====================== */
 const createCategoryDel = new controllercategoriesDelete();
@@ -94,6 +96,7 @@ router.put("/category", createCategoryUpdate.handle);
 
 /*=================================== ROTA DE REALACIONAMENTO =============================*/
 router.delete("/category/:id", createCategoryDel.handle);
+router.delete("/categoryrelations/:id", createCategoryDeleteR.handle);
 router.get("/category/:id", findCategoryRelationId.handle);
 router.get("/categorypr", findCategoryRelation.handle);
 router.post("/categorypr", createProductCategory.handle);

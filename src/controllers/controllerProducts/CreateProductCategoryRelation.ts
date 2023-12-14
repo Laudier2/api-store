@@ -34,6 +34,6 @@ export class CreateProductCategoryRelation {
       },
     });
 
-    return productCategory;
+    return response.status(201).json(productCategory);
   }
 }
