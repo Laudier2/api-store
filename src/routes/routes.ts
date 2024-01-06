@@ -80,6 +80,73 @@ const createCompraDelete = new ControllerCompraDelete()
 const createDeleteRelation = new ControllerCompraRelationsDel()
 const createCompraRealtion = new ControllerCompraRelations()
 
+/*=================================== IMPORT CONTROLLER MARCKTS =============================*/
+// SLids
+import { ControllerSlids } from "../controllers/marckts/slids/controllerSlidsCreate";
+import { ControllerSlidsUpdate } from "../controllers/marckts/slids/controllerSlidsUpdate";
+import { ControllerSlidsFind } from "../controllers/marckts/slids/controllerSlidsFind";
+import { ControllerSlidsDelete } from "../controllers/marckts/slids/controllerSlidsDelete";
+//Banner
+import { ControllerBanner } from "../controllers/marckts/banne/controllerBannesCreate";
+import { ControllerBannerUpdate } from "../controllers/marckts/banne/controllerBannesUpdate";
+import { ControllerBannerFind } from "../controllers/marckts/banne/controllerBannesFind";
+import { ControllerBannerDelete } from "../controllers/marckts/banne/controllerBannesDelete";
+//Promocao
+import { ControllerPromocao } from "../controllers/marckts/promocao/controllerPromocaoCreate";
+import { ControllerPromocaoUpdate } from "../controllers/marckts/promocao/controllerPromocaoUpdate";
+import { ControllerPromocaoFind } from "../controllers/marckts/promocao/controllerPromocaoFind";
+import { ControllerPromocaoDelete } from "../controllers/marckts/promocao/controllerPromocaoDelete";
+//Ofertas
+import { ControllerOfertas } from "../controllers/marckts/ofertas/controllerOfertaCreate";
+import { ControllerOfertasUpdate } from "../controllers/marckts/ofertas/controllerOfertaUpdate";
+import { ControllerOfertasFind } from "../controllers/marckts/ofertas/controllerOfertaFind";
+import { ControllerOfertasDelete } from "../controllers/marckts/ofertas/controllerOfertaDelete";
+
+//Objetos criados para rotas das class marckts
+//OBJ slids
+const slidsCreate = new ControllerSlids()
+const slidsUpdate = new ControllerSlidsUpdate()
+const slidsFind = new ControllerSlidsFind()
+const slidsDelete = new controllerDelete()
+//OBJ banner
+const bannerCreate = new ControllerBanner()
+const bannerUpdate = new ControllerBannerUpdate()
+const bannerFind = new ControllerBannerFind()
+const bannerDelete = new ControllerBannerDelete()
+//OBJ promoção
+const promocaoCreate = new ControllerPromocao()
+const promocaoUpdate = new ControllerPromocaoUpdate()
+const promocaoFind = new ControllerPromocaoFind()
+const promocaoDelete = new ControllerPromocaoDelete()
+//OBJ ofertas
+const ofertasCreate = new ControllerOfertas()
+const ofertasUpdate = new ControllerOfertasUpdate()
+const ofertasFind = new ControllerOfertasFind()
+const ofertasDelete = new ControllerOfertasDelete()
+
+
+/*=================================== ROTA DE MACKTS =============================*/
+//SLIDS
+router.post("/slids", slidsCreate.handle);
+router.delete("/slids/:id", slidsDelete.handle);
+router.put("/slids", slidsUpdate.handle);
+router.get("/slids", slidsFind.handle);
+//BANNER
+router.post("/banner", bannerCreate.handle);
+router.delete("/banner/:id", bannerDelete.handle);
+router.put("/banner", bannerFind.handle);
+router.get("/banner", bannerFind.handle);
+//PROMOÇÃO
+router.post("/promocao", promocaoCreate.handle);
+router.delete("/promocao/:id", promocaoDelete.handle);
+router.put("/promocao", promocaoUpdate.handle);
+router.get("/promocao", promocaoFind.handle);
+//OFERTAS
+router.post("/ofertas", ofertasCreate.handle);
+router.delete("/ofertas/:id", ofertasDelete.handle);
+router.put("/ofertas", ofertasUpdate.handle);
+router.get("/ofertas", ofertasFind.handle);
+
 /*=================================== ROTA DE PRODUCT =============================*/
 
 router.post("/product", createProduct.handle);
@@ -170,6 +237,18 @@ router.get("/", (req, res) => {
                 <a href="/adress">GET endereços: Lista todos os endereços na base de dados!</a></li>
             <li style="background-color: aqua; font-weight: bold; font-size: large 15px; margin: 10px; display: inline-block; padding: 10px; border-radius: 6px; border: solid 1px; text-decoration: none;">
                 <a href="/compra">GET compras: Lista todos as compras na base de dados!</a>
+            </li>
+            <li style="background-color: aqua; font-weight: bold; font-size: large 15px; margin: 10px; display: inline-block; padding: 10px; border-radius: 6px; border: solid 1px; text-decoration: none;">
+                <a href="/slids">GET slids: Lista todos as imagens na base de dados!</a>
+            </li>
+            <li style="background-color: aqua; font-weight: bold; font-size: large 15px; margin: 10px; display: inline-block; padding: 10px; border-radius: 6px; border: solid 1px; text-decoration: none;">
+                <a href="/banner">GET banner: Lista todos os banner na base de dados!</a>
+            </li>
+            <li style="background-color: aqua; font-weight: bold; font-size: large 15px; margin: 10px; display: inline-block; padding: 10px; border-radius: 6px; border: solid 1px; text-decoration: none;">
+                <a href="/promocao">GET promoção: Lista todos as promoçoes na base de dados!</a>
+            </li>
+            <li style="background-color: aqua; font-weight: bold; font-size: large 15px; margin: 10px; display: inline-block; padding: 10px; border-radius: 6px; border: solid 1px; text-decoration: none;">
+                <a href="/ofertas">GET ofertas: Lista todos as ofertas na base de dados!</a>
             </li>
         </ul>
         <img style="margin: auto; dispaly: flex; width: 100%" src="https://s2-techtudo.glbimg.com/cBzv_-VyoyirkotBx76jb_m-FQA=/0x0:620x304/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2021/M/n/z8weK8QpCWDfcY8KFx4w/2013-08-27-mp.jpg" alt="img" />

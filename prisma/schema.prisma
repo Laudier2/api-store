@@ -117,3 +117,39 @@ model CompraRealations {
 
   @@map("comprarealations")
 }
+
+model Promocao {
+  id String @id @default(uuid())
+  promocao String []
+  
+  created_at          DateTime          @default(now())
+  update_at           DateTime          @default(now())
+  @@map("promocao")
+}
+
+model Ofertas {
+  id String @id @default(uuid())
+  ofertas String []
+  
+  created_at          DateTime          @default(now())
+  update_at           DateTime          @default(now())
+  @@map("ofertas")
+}
+
+model Slids {
+  id String @id @default(uuid())
+  slids String []
+  
+  created_at          DateTime          @default(now())
+  update_at           DateTime          @default(now())
+  @@map("slids")
+}
+
+model Bannes {
+  id String @id @default(uuid())
+  bannes String []
+  
+  created_at          DateTime          @default(now())
+  update_at           DateTime          @default(now())
+  @@map("bannes")
+}
