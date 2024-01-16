@@ -52,27 +52,6 @@ export class Createproducts {
       }
     }
 
-    const barcodeExists = await prisma.product.findUnique({
-      where: {
-        bar_code: bar_code
-      }
-    })
-
-    if (barcodeExists) {
-      return(`\n\n Esse bar_code: ${bar_code} já estar cadastrado em outro produto, tente outro!\n\n `)
-    }
-
-    const slugExists = await prisma.product.findUnique({
-      where: {
-        slug: slug
-      }
-    })
-
-    if (slugExists) {
-      return(`Esse slug: ${slug} já estar cadastrado em outro produto, tente outro!\n\n `)
-    }
-
-
     const products = await prisma.product.create({
       data: {
         name,
