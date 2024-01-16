@@ -52,6 +52,7 @@ export class Createproducts {
       }
     }
 
+
     const products = await prisma.product.create({
       data: {
         name,

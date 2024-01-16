@@ -60,12 +60,12 @@ model Category {
 model Product {
   id                  String             @id @default(uuid())
   name                String
-  bar_code            String[]            
+  bar_code            String[]
   price               String
   image               String[]
   size                String[]
   color               String[]
-  slug                String[]          
+  slug                String[]
   description         String
   quantity            String
   created_at          DateTime           @default(now())
