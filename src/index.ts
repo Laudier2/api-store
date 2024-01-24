@@ -6,6 +6,7 @@ import { router } from "./routes/routes";
 
 const port = process.env.APP_PORT || 3005
 
+//Estencia com Express
 const app = express();
 
 app.use(express.urlencoded({ extended: false }));
