@@ -3,14 +3,15 @@ import { prisma } from "../../prisma_Client_Orm/prismaClient";
 
 export class CreatecategoriesUpdate {
   async handle(request: Request, response: Response) {
-    const { id, name } = request.body;
+    const { id, name, image } = request.body;
 
     const categories = await prisma.category.update({
       where: {
         id: id,
       },
       data: {
-        name
+        name,
+        image
       }
     });
 

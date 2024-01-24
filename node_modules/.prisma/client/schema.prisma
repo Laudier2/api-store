@@ -51,6 +51,7 @@ model RelationsAdress {
 
 model Category {
   id                  String             @id @default(uuid())
+  image                String
   name                String
   products_categories Product_Category[]
 
