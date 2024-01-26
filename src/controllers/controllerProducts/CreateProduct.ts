@@ -12,7 +12,8 @@ export class Createproducts {
     description,
     image,
     quantity,
-    slug
+    slug,
+    url_product
   }: CreatProductDTO) {
 
 
@@ -29,6 +30,7 @@ export class Createproducts {
       typeof quantity === 'number' ||
       typeof description === 'number' ||
       typeof slug === 'number' ||
+      typeof url_product === 'number' ||
       typeof image === 'number'
     ) {
       return {
@@ -45,6 +47,7 @@ export class Createproducts {
       typeof bar_code === 'undefined' ||
       typeof quantity === 'undefined' ||
       typeof slug === 'undefined' ||
+      typeof url_product === 'undefined' ||
       typeof image === 'undefined'
     ) {
       return {
@@ -63,7 +66,8 @@ export class Createproducts {
         description,
         image,
         quantity,
-        slug
+        slug,
+        url_product
       },
     });
 

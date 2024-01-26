@@ -11,4 +11,5 @@ export interface CreatProductDTO {
     quantity: string;
     amount: Decimal;
     slug: string;
+    url_product: string;
 }

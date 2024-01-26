@@ -4,7 +4,7 @@ import { AppError } from "../../err/AppErros";
 
 export class CreateProductWithExistcategories {
   async handle(request: Request, response: Response) {
-    const { id, name, price, bar_code, color, size, quantity, description, image, slug, id_categories } = request.body;
+    const { id, name, price, bar_code, color, url_product, size, quantity, description, image, slug, id_categories } = request.body;
 
     if (
       typeof price === 'number' ||
@@ -14,7 +14,8 @@ export class CreateProductWithExistcategories {
       typeof name === 'number' ||
       typeof quantity === 'number' ||
       typeof description === 'number' ||
-      typeof slug === 'number' ||
+      typeof slug === 'undefined' ||
+      typeof url_product === 'number' ||
       typeof image === 'number'
     ) {
       return response.status(500).json({
@@ -30,7 +31,7 @@ export class CreateProductWithExistcategories {
       typeof name === 'undefined' ||
       typeof bar_code === 'undefined' ||
       typeof quantity === 'undefined' ||
-      typeof slug === 'undefined' ||
+      typeof url_product === 'undefined' ||
       typeof image === 'undefined'
     ) {
       return response.status(500).json({
@@ -63,7 +64,8 @@ export class CreateProductWithExistcategories {
             quantity,
             description,
             image,
-            slug
+            slug,
+            url_product
           },
         },
         categories: {

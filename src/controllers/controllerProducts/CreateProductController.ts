@@ -14,7 +14,8 @@ export class CreateProductController {
       description,
       image,
       quantity,
-      slug
+      slug,
+      url_product
     } = request.body;
 
 
@@ -30,7 +31,8 @@ export class CreateProductController {
         description,
         image,
         quantity,
-        slug
+        slug,
+        url_product
       }
     })
 
