@@ -11,7 +11,8 @@ export class Createproducts {
     description,
     image,
     quantity,
-    slug
+    slug,
+    url_product
   }: CreatProductDTO) {
 
     /* Aque abaixo começamos a cria nossa regra de negocio, verificamos se o bar_code existe, ou se o slug ja existe, 
@@ -80,7 +81,8 @@ export class Createproducts {
         description,
         image,
         quantity,
-        slug
+        slug,
+        url_product
       },
     });
 
