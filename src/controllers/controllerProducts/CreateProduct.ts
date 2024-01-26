@@ -13,7 +13,7 @@ export class Createproducts {
     image,
     quantity,
     slug,
-    url_product
+    url_product //Essa entidade foi adicionada 26/01/2024
   }: CreatProductDTO) {
 
 
