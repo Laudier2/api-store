@@ -69,6 +69,7 @@ model Product {
   slug                String[]
   description         String
   quantity            String
+  url_product         String
   created_at          DateTime           @default(now())
   comprarealations    CompraRealations[]
   products_categories Product_Category[]
