@@ -15,22 +15,6 @@ export class ControllerPromocaoUpdate {
       })
     } 
 
-    if(
-      promocao
-    ){
-      return response.status(501).json({
-        msg: `Lembre-se que, todos os campos tem que estar em string ok!`
-      })
-    }  
-
-    if(
-      promocao
-    ){
-      return response.status(500).json({
-        msg: `Algum campo esta faltando!`
-      })
-    }   
-
     const PromocaoUpdate = await prisma.promocao.update({
       where: {
         id: id,

@@ -15,22 +15,6 @@ export class ControllerOfertasUpdate {
       })
     } 
 
-    if(
-      ofertas
-    ){
-      return response.status(501).json({
-        msg: `Lembre-se que, todos os campos tem que estar em string ok!`
-      })
-    }  
-
-    if(
-      ofertas
-    ){
-      return response.status(500).json({
-        msg: `Algum campo esta faltando!`
-      })
-    }   
-
     const OfertasUpdate = await prisma.ofertas.update({
       where: {
         id: id,
