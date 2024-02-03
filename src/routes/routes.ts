@@ -107,7 +107,7 @@ import { ControllerOfertasDelete } from "../controllers/marckts/ofertas/controll
 const slidsCreate = new ControllerSlids()
 const slidsUpdate = new ControllerSlidsUpdate()
 const slidsFind = new ControllerSlidsFind()
-const slidsDelete = new controllerDelete()
+const slidsDelete = new ControllerSlidsDelete()
 //OBJ banner
 const bannerCreate = new ControllerBanner()
 const bannerUpdate = new ControllerBannerUpdate()
