@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { prisma } from "../../../prisma_Client_Orm/prismaClient";
 
+//Class de Ofetas
 export class ControllerOfertas {
   async handle(request: Request, response: Response) {
     const { ofertas } = request.body;
