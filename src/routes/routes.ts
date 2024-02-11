@@ -183,9 +183,9 @@ const loginUser = new ControllerLogin()
 
 /* ============================= ROTAS DE ACESSO =============================== */
 
-router.post("/user", createUser.handle);
 router.post("/login", loginUser.handle);
 //router.use(authUser.handle);
+router.post("/user", createUser.handle);
 router.put("/user", updateUser.handle);
 router.delete("/user/:id", deleteUser.handle);
 router.get("/user", findUser.handle);

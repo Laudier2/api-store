@@ -4,19 +4,25 @@ import { prisma } from "../../prisma_Client_Orm/prismaClient";
 export class ControllerCompraUpdate {
   async handle(request: Request, response: Response) {
     const { 
-      id, 
-      name,
-      email,
-      phone,
-      district, 
-      apartment_or_house, 
-      street, 
-      productslist,
+      id,
       city, 
       cep, 
+      street, 
+      state, 
       number, 
-      state,
-      code_compra
+      district, 
+      apartment_or_house,
+      productName,
+      productPrice,
+      productQuantity,
+      productImage,
+      productSize,    
+      productClolor,
+      productUrl,
+      email, 
+      name, 
+      phone, 
+      code_compra 
     } = request.body;
 
 
@@ -34,7 +40,13 @@ export class ControllerCompraUpdate {
       typeof apartment_or_house === 'number' ||
       typeof district === 'number' ||
       typeof name === 'number' ||
-      typeof productslist === 'number' ||
+      typeof productName === 'number' ||
+      typeof productPrice === 'number' ||
+      typeof productImage === 'number' ||
+      typeof productQuantity === 'number' ||
+      typeof productSize === 'number' ||
+      typeof productClolor === 'number' ||
+      typeof productUrl === 'number' ||
       typeof email === 'number' ||
       typeof phone === 'number' ||
       typeof city === 'number'
@@ -52,7 +64,13 @@ export class ControllerCompraUpdate {
         typeof district === 'undefined' ||
         typeof city === 'undefined' || 
         typeof name === 'undefined' ||
-        typeof productslist === 'undefined' ||
+        typeof productName === 'undefined' ||
+        typeof productPrice === 'undefined' ||
+        typeof productImage === 'undefined' ||
+        typeof productQuantity === 'undefined' ||
+        typeof productSize === 'undefined' ||
+        typeof productClolor === 'undefined' ||
+        typeof productUrl === 'undefined' ||
         typeof email === 'undefined' ||
         typeof code_compra === 'undefined' ||
         typeof phone === 'undefined'
@@ -75,8 +93,14 @@ export class ControllerCompraUpdate {
         street, 
         city, 
         cep, 
-        productslist,
         number, 
+        productName,
+        productPrice,
+        productQuantity,
+        productImage,
+        productSize,    
+        productClolor,
+        productUrl,
         state,
         code_compra
       }

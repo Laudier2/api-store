@@ -100,7 +100,13 @@ model Compra {
   created_at         DateTime           @default(now())
   update_at          DateTime           @default(now())
   code_compra        String
-  productslist       String[]
+  productName       String
+  productPrice       String
+  productImage       String
+  productSize       String
+  productClolor       String
+  productQuantity     String
+  productUrl       String
   comprarealations   CompraRealations[]
 
   @@map("compra")
