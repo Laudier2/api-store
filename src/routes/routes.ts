@@ -64,19 +64,31 @@ const findProductCategory = new controllerproductsCategory();
 const findProductCategoryId = new controllerproductsId();
 
 /* ================================= CONTROLLERS COMPRA ================================ */
-import { ControllerCompra } from "../controllers/controllerCompra/controllerCompraCreate"; 
-import { ControllerCompraFind } from "../controllers/controllerCompra/controllerCompraFind";
+import { ControllerCompra, ControllerCompra1, ControllerCompra2, ControllerCompra3, ControllerCompra4 } from "../controllers/controllerCompra/controllerCompraCreate"; 
+import { ControllerCompraFind, ControllerCompraFind1, ControllerCompraFind2, ControllerCompraFind3, ControllerCompraFind4 } from "../controllers/controllerCompra/controllerCompraFind";
 import { ControllerCompraUpdate } from "../controllers/controllerCompra/controllerCompraUpdate";
-import { ControllerCompraDelete } from "../controllers/controllerCompra/controllerCompraDelete";
+import { ControllerCompraDelete, ControllerCompraDelete1, ControllerCompraDelete2, ControllerCompraDelete3, ControllerCompraDelete4 } from "../controllers/controllerCompra/controllerCompraDelete";
 import { ControllerCompraRelations } from "../controllers/controllerCompra/controllerCompraRelations";
 import { ControllerCompraRelationsDel } from "../controllers/controllerCompra/controllerCompraRelationsDelete"; 
 import { ControllerCompraFindRelations } from "../controllers/controllerCompra/controllerCompraFindRelation";
 
 const createCompra = new ControllerCompra()
+const createCompra1 = new ControllerCompra1()
+const createCompra2 = new ControllerCompra2()
+const createCompra3 = new ControllerCompra3()
+const createCompra4 = new ControllerCompra4()
 const createCompraFind = new ControllerCompraFind()
+const createCompraFind1 = new ControllerCompraFind1()
+const createCompraFind2 = new ControllerCompraFind2()
+const createCompraFind3 = new ControllerCompraFind3()
+const createCompraFind4 = new ControllerCompraFind4()
 const createCompraFindRelations = new ControllerCompraFindRelations()
 const createCompraUpdate = new ControllerCompraUpdate()
 const createCompraDelete = new ControllerCompraDelete()
+const createCompraDelete1 = new ControllerCompraDelete1()
+const createCompraDelete2 = new ControllerCompraDelete2()
+const createCompraDelete3 = new ControllerCompraDelete3()
+const createCompraDelete4 = new ControllerCompraDelete4()
 const createDeleteRelation = new ControllerCompraRelationsDel()
 const createCompraRealtion = new ControllerCompraRelations()
 
@@ -212,11 +224,23 @@ router.get("/relationuseradress/:id", findAdressUersRealationsid.handle)
 
 /* ============================= ROTAS DE ACESSO =============================== */
 router.post("/compra", createCompra.handle);
+router.post("/compra1", createCompra1.handle);
+router.post("/compra2", createCompra2.handle);
+router.post("/compra3", createCompra3.handle);
+router.post("/compra4", createCompra4.handle);
 router.post("/comprarelations", createCompraRealtion.handle);
 router.get("/comprarelations", createCompraFindRelations.handle);
 router.get("/compra", createCompraFind.handle);
+router.get("/compra1", createCompraFind1.handle);
+router.get("/compra2", createCompraFind2.handle);
+router.get("/compra3", createCompraFind3.handle);
+router.get("/compra4", createCompraFind4.handle);
 router.put("/compraupdate", createCompraUpdate.handle);
 router.delete("/compra/:id", createCompraDelete.handle);
+router.delete("/compra1/:id", createCompraDelete1.handle);
+router.delete("/compra2/:id", createCompraDelete2.handle);
+router.delete("/compra3/:id", createCompraDelete3.handle);
+router.delete("/compra4/:id", createCompraDelete4.handle);
 router.delete("/comprarelations/:id", createDeleteRelation.handle);
 
 /* ============================= ROTAS DE REATION_USER_ADRESS =============================== */
