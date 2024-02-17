@@ -112,6 +112,110 @@ model Compra {
   @@map("compra")
 }
 
+model Compra1 {
+  id                 String             @id @default(uuid())
+  name               String
+  phone              String
+  email              String
+  street             String
+  city               String
+  state              String
+  cep                String
+  number             String
+  district           String
+  apartment_or_house String
+  created_at         DateTime           @default(now())
+  update_at          DateTime           @default(now())
+  code_compra        String
+  productName       String
+  productPrice       String
+  productImage       String
+  productSize       String
+  productClolor       String
+  productQuantity     String
+  productUrl       String
+
+  @@map("compra1")
+}
+
+model Compra2 {
+  id                 String             @id @default(uuid())
+  name               String
+  phone              String
+  email              String
+  street             String
+  city               String
+  state              String
+  cep                String
+  number             String
+  district           String
+  apartment_or_house String
+  created_at         DateTime           @default(now())
+  update_at          DateTime           @default(now())
+  code_compra        String
+  productName       String
+  productPrice       String
+  productImage       String
+  productSize       String
+  productClolor       String
+  productQuantity     String
+  productUrl       String
+
+  @@map("compra2")
+}
+
+model Compra3 {
+  id                 String             @id @default(uuid())
+  name               String
+  phone              String
+  email              String
+  street             String
+  city               String
+  state              String
+  cep                String
+  number             String
+  district           String
+  apartment_or_house String
+  created_at         DateTime           @default(now())
+  update_at          DateTime           @default(now())
+  code_compra        String
+  productName       String
+  productPrice       String
+  productImage       String
+  productSize       String
+  productClolor       String
+  productQuantity     String
+  productUrl       String
+
+  @@map("compra3")
+}
+
+model Compra4 {
+  id                 String             @id @default(uuid())
+  name               String
+  phone              String
+  email              String
+  street             String
+  city               String
+  state              String
+  cep                String
+  number             String
+  district           String
+  apartment_or_house String
+  created_at         DateTime           @default(now())
+  update_at          DateTime           @default(now())
+  code_compra        String
+  productName       String
+  productPrice       String
+  productImage       String
+  productSize       String
+  productClolor       String
+  productQuantity     String
+  productUrl       String
+
+  @@map("compra4")
+}
+
 model CompraRealations {
   id          String  @id @default(uuid())
   id_products String
