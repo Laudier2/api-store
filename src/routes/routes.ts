@@ -72,6 +72,28 @@ import { ControllerCompraRelations } from "../controllers/controllerCompra/contr
 import { ControllerCompraRelationsDel } from "../controllers/controllerCompra/controllerCompraRelationsDelete"; 
 import { ControllerCompraFindRelations } from "../controllers/controllerCompra/controllerCompraFindRelation";
 
+/* ================================= CONTROLLERS FAVORIT ================================ */
+import { CreateFavorit } from "../controllers/controllerFavoriotos/controllerFavoriotosCreate"; 
+import { ControllerFavoritUpdate } from "../controllers/controllerFavoriotos/controllerFavoriotosUpdate"; 
+import { ControllerFavoritFind } from "../controllers/controllerFavoriotos/controllerFavoriotosFind"; 
+import { ControllerFavoritDelete } from "../controllers/controllerFavoriotos/controllerFavoriotosDelete"; 
+
+const createFavorito = new CreateFavorit()
+const findFavorito = new ControllerFavoritFind()
+const updateFavorito = new ControllerFavoritUpdate()
+const deleteFavorito = new ControllerFavoritDelete()
+
+/* ================================= CONTROLLERS COMENTARIOS ================================ */
+import { ControllerComentario } from "../controllers/controllerComentarios/controllerCompraCreate"; 
+import { ControllerComentarioUpdate } from "../controllers/controllerComentarios/controllerCompraUpdate"; 
+import { ControllerComentarioFind } from "../controllers/controllerComentarios/controllerCompraFind"; 
+import { ControllerComentarioDelete } from "../controllers/controllerComentarios/controllerCompraDelete"; 
+
+const createComentario = new ControllerComentario()
+const findComentario = new ControllerComentarioFind()
+const updateComentario = new ControllerComentarioUpdate()
+const deleteComentario = new ControllerComentarioDelete()
+
 const createCompra = new ControllerCompra()
 const createCompra1 = new ControllerCompra1()
 const createCompra2 = new ControllerCompra2()
@@ -217,12 +239,25 @@ router.post("/adress", createAdress.handle)
 router.get("/adress", findAdress.handle)
 router.put("/adress", updateAdress.handle)
 
+/* ============================= ROTAS DE ADRESS =============================== */
+router.post("/comentario", createComentario.handle)
+router.get("/comentario", findComentario.handle)
+router.put("/comentario", updateComentario.handle)
+router.delete("/comentario:id", deleteComentario.handle)
+
+/* ============================= ROTAS DE ADRESS =============================== */
+router.post("/favorito", createFavorito.handle)
+router.get("/favorito", findFavorito.handle)
+router.put("/favorito", updateFavorito.handle)
+router.delete("/favorito:id", deleteFavorito.handle)
+
+
 /* ============================= ROTAS DE REATION_USER_ADRESS =============================== */
 router.post("/relationuseradress", relationUserAdress.handle)
 router.get("/relationuseradress", findAdressUersRealations.handle)
 router.get("/relationuseradress/:id", findAdressUersRealationsid.handle)
 
-/* ============================= ROTAS DE ACESSO =============================== */
+/* ============================= ROTAS DE COMPRAS =============================== */
 router.post("/compra", createCompra.handle);
 router.post("/compra1", createCompra1.handle);
 router.post("/compra2", createCompra2.handle);

@@ -261,3 +261,32 @@ model Bannes {
 
   @@map("bannes")
 }
+
+model Comentarios {
+  id         String   @id @default(uuid())
+  image     String[]
+  name      String
+  message   String
+  created_at DateTime @default(now())
+  update_at  DateTime @default(now())
+
+  @@map("comentarios")
+}
+
+model Favorito {
+  id         String   @id @default(uuid())
+  name                String
+  bar_code            String[]
+  price               String
+  image               String[]
+  size                String[]
+  color               String[]
+  slug                String[]
+  description         String
+  quantity            String
+  url_product         String
+  created_at DateTime @default(now())
+  update_at  DateTime @default(now())
+
+  @@map("favorito")
+}
