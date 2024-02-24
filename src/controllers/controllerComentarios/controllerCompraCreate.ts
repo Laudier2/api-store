@@ -5,14 +5,18 @@ export class ControllerComentario {
   async handle(request: Request, response: Response) {
     const { 
       name, 
+      imgName,
       image, 
-      message
+      message,
+      estrela
     } = request.body;
     
     if(
       typeof name === 'number' || 
       typeof image === 'number' || 
-      typeof message === 'number' 
+      typeof message === 'number' ||
+      typeof imgName === 'number' || 
+      typeof estrela === 'number' 
     ){
       return response.status(501).json({
         msg: `Lembre-se que, todos os campos tem que estar em string ok!`
@@ -22,7 +26,9 @@ export class ControllerComentario {
     if(
         typeof name === 'undefined' || 
         typeof image === 'undefined' ||
-        typeof message === 'undefined' 
+        typeof message === 'undefined' ||
+        typeof imgName === 'undefined' ||
+        typeof estrela === 'undefined' 
     ){
       return response.status(500).json({
         msg: `Algum campo esta faltando!`
@@ -31,9 +37,11 @@ export class ControllerComentario {
 
     const comentario = await prisma.comentarios.create({
       data: {
-        name,
-        image,
-        message
+        name, 
+        imgName,
+        image, 
+        message,
+        estrela
       }
     })
     

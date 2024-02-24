@@ -88,11 +88,17 @@ import { ControllerComentario } from "../controllers/controllerComentarios/contr
 import { ControllerComentarioUpdate } from "../controllers/controllerComentarios/controllerCompraUpdate"; 
 import { ControllerComentarioFind } from "../controllers/controllerComentarios/controllerCompraFind"; 
 import { ControllerComentarioDelete } from "../controllers/controllerComentarios/controllerCompraDelete"; 
+import { controllerComentarioFindRelation } from "../controllers/controllerComentarios/controllerComentarioFindRelation"; 
+import { ControllerComentarioaRelationsDel } from "../controllers/controllerComentarios/ControllerComentarioaRelationsDel"; 
+import { controllerComentarioCreateRelation } from "../controllers/controllerComentarios/controllerComentarioCreateRelation"; 
 
 const createComentario = new ControllerComentario()
+const createComentarioRelation = new controllerComentarioCreateRelation()
 const findComentario = new ControllerComentarioFind()
+const findComentarioRelation = new controllerComentarioFindRelation()
 const updateComentario = new ControllerComentarioUpdate()
 const deleteComentario = new ControllerComentarioDelete()
+const deleteComentarioRelation = new ControllerComentarioaRelationsDel()
 
 const createCompra = new ControllerCompra()
 const createCompra1 = new ControllerCompra1()
@@ -241,15 +247,18 @@ router.put("/adress", updateAdress.handle)
 
 /* ============================= ROTAS DE ADRESS =============================== */
 router.post("/comentario", createComentario.handle)
+router.post("/comentarioriorelation", createComentarioRelation.handle)
 router.get("/comentario", findComentario.handle)
+router.get("/comentariorelation", findComentarioRelation.handle)
 router.put("/comentario", updateComentario.handle)
-router.delete("/comentario:id", deleteComentario.handle)
+router.delete("/comentario/:id", deleteComentario.handle)
+router.delete("/comentarioriorelation/:id", deleteComentarioRelation.handle)
 
 /* ============================= ROTAS DE ADRESS =============================== */
 router.post("/favorito", createFavorito.handle)
 router.get("/favorito", findFavorito.handle)
 router.put("/favorito", updateFavorito.handle)
-router.delete("/favorito:id", deleteFavorito.handle)
+router.delete("/favorito/:id", deleteFavorito.handle)
 
 
 /* ============================= ROTAS DE REATION_USER_ADRESS =============================== */

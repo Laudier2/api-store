@@ -73,6 +73,7 @@ model Product {
   created_at          DateTime           @default(now())
   comprarealations    CompraRealations[]
   products_categories Product_Category[]
+  comentariorealations ComentarioRealations[]
 }
 
 model Product_Category {
@@ -264,13 +265,26 @@ model Bannes {
 
 model Comentarios {
   id         String   @id @default(uuid())
+  imgName   String
   image     String[]
   name      String
   message   String
+  estrela   String
   created_at DateTime @default(now())
   update_at  DateTime @default(now())
+  comentariorealations ComentarioRealations[]
 
   @@map("comentarios")
+}
+
+model ComentarioRealations {
+  id          String  @id @default(uuid())
+  id_product String
+  id_comentario   String
+  comentarios      Comentarios  @relation(fields: [id_comentario], references: [id])
+  product     Product @relation(fields: [id_product], references: [id])
+
+  @@map("comentariorealations")
 }
 
 model Favorito {
