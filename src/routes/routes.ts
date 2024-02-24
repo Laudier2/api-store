@@ -75,11 +75,11 @@ import { ControllerCompraFindRelations } from "../controllers/controllerCompra/c
 /* ================================= CONTROLLERS FAVORIT ================================ */
 import { CreateFavorit } from "../controllers/controllerFavoriotos/controllerFavoriotosCreate"; 
 import { ControllerFavoritUpdate } from "../controllers/controllerFavoriotos/controllerFavoriotosUpdate"; 
-//import { ControllerFavoritFind } from "../controllers/controllerFavoriotos/controllerFavoriotosFind"; 
+import { ControllerFavoritFind } from "../controllers/controllerFavoriotos/controllerFavoriotosFind"; 
 import { ControllerFavoritDelete } from "../controllers/controllerFavoriotos/controllerFavoriotosDelete"; 
 
 const createFavorito = new CreateFavorit()
-//const findFavorito = new ControllerFavoritFind()
+const findFavorito = new ControllerFavoritFind()
 const updateFavorito = new ControllerFavoritUpdate()
 const deleteFavorito = new ControllerFavoritDelete()
 
@@ -247,16 +247,16 @@ router.put("/adress", updateAdress.handle)
 
 /* ============================= ROTAS DE ADRESS =============================== */
 router.post("/comentario", createComentario.handle)
-router.post("/comentarioriorelation", createComentarioRelation.handle)
+router.post("/comentariorelation", createComentarioRelation.handle)
 router.get("/comentario", findComentario.handle)
 router.get("/comentariorelation", findComentarioRelation.handle)
 router.put("/comentario", updateComentario.handle)
 router.delete("/comentario/:id", deleteComentario.handle)
-router.delete("/comentarioriorelation/:id", deleteComentarioRelation.handle)
+router.delete("/comentariorelation/:id", deleteComentarioRelation.handle)
 
 /* ============================= ROTAS DE ADRESS =============================== */
 router.post("/favorito", createFavorito.handle)
-//router.get("/favorito", findFavorito.handle)
+router.get("/favorito", findFavorito.handle)
 router.put("/favorito", updateFavorito.handle)
 router.delete("/favorito/:id", deleteFavorito.handle)
 
