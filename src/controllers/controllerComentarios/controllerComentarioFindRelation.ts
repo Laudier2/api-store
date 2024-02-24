@@ -10,7 +10,8 @@ export class controllerComentarioFindRelation {
         id
       },
       include: {
-        comentarios: true
+        comentarios: true,
+        product: true
       }
     })
 
