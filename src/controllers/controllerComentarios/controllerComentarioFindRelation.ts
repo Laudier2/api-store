@@ -5,7 +5,14 @@ export class controllerComentarioFindRelation {
   async handle(request: Request, response: Response) {
     const { id } = request.body;
 
-    const comentarioRealatio = await prisma.comentarioRealations.findMany({})
+    const comentarioRealatio = await prisma.comentarioRealations.findMany({
+      where: {
+        id
+      },
+      include: {
+        comentarios: true
+      }
+    })
 
     return response.status(200).json(comentarioRealatio)
 
