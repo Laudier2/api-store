@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { prisma } from "../../prisma_Client_Orm/prismaClient"; 
 
+//Novas itidade adicionada
 export class ControllerComentarioUpdate {
   async handle(request: Request, response: Response) {
     const { 
