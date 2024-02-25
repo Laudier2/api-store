@@ -8,7 +8,8 @@ export class ControllerComentario {
       imgName,
       image, 
       message,
-      estrela
+      estrela,
+      idProduct
     } = request.body;
     
     if(
@@ -16,6 +17,7 @@ export class ControllerComentario {
       typeof image === 'number' || 
       typeof message === 'number' ||
       typeof imgName === 'number' || 
+      typeof idProduct === 'number' || 
       typeof estrela === 'number' 
     ){
       return response.status(501).json({
@@ -28,6 +30,7 @@ export class ControllerComentario {
         typeof image === 'undefined' ||
         typeof message === 'undefined' ||
         typeof imgName === 'undefined' ||
+        typeof idProduct === 'undefined' ||
         typeof estrela === 'undefined' 
     ){
       return response.status(500).json({
@@ -41,7 +44,8 @@ export class ControllerComentario {
         imgName,
         image, 
         message,
-        estrela
+        estrela,
+        idProduct
       }
     })
     

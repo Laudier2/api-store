@@ -7,12 +7,18 @@ export class ControllerComentarioUpdate {
       id,
       name, 
       image, 
-      message
+      message,
+      imgName,
+      estrela,
+      idProduct
     } = request.body;
     
     if(
       typeof name === 'number' || 
+      typeof imgName === 'number' || 
       typeof image === 'number' || 
+      typeof estrela === 'number' || 
+      typeof idProduct === 'number' || 
       typeof message === 'number' 
     ){
       return response.status(501).json({
@@ -22,7 +28,10 @@ export class ControllerComentarioUpdate {
 
     if(
         typeof name === 'undefined' || 
+        typeof imgName === 'undefined' ||
         typeof image === 'undefined' ||
+        typeof estrela === 'undefined' ||
+        typeof idProduct === 'undefined' ||
         typeof message === 'undefined' 
     ){
       return response.status(500).json({
@@ -36,6 +45,9 @@ export class ControllerComentarioUpdate {
       data: {
         name,
         image,
+        imgName,
+        estrela,
+        idProduct,
         message
       }
     })

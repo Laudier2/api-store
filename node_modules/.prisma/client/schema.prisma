@@ -270,6 +270,7 @@ model Comentarios {
   name      String
   message   String
   estrela   String
+  idProduct   String
   created_at DateTime @default(now())
   update_at  DateTime @default(now())
   comentariorealations ComentarioRealations[]
