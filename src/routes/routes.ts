@@ -17,6 +17,7 @@ import { CreatecategoriesUpdate } from "../controllers/controllerProducts/Create
 import { CreateProductWithExistcategories } from "../controllers/controllerProducts/CreateProductWithExistCategory";
 import { CreateproductsWithExistCategoryPut } from "../controllers/controllerProducts/ControllerProductCategoryPut";
 import { ControllerCategoryDeleteRelations } from "../controllers/controllerProducts/CreateCategoryDeleteRelations";
+import { FindProductRealationTodos } from "../controllers/controllerProducts/FindProductRealationTodos";
 
 //============== importação de class de controller de usuarios =================
 import { ControllerCreate } from "../controllers/controllerUsers/controllerCreateUser";
@@ -62,6 +63,7 @@ const createProductCategoryExist = new CreateProductWithExistcategories();
 const createProductCategoryExistPut = new CreateproductsWithExistCategoryPut();
 const findProductCategory = new controllerproductsCategory();
 const findProductCategoryId = new controllerproductsId();
+const FindProductRealationTodosList = new FindProductRealationTodos();
 
 /* ================================= CONTROLLERS COMPRA ================================ */
 import { ControllerCompra, ControllerCompra1, ControllerCompra2, ControllerCompra3, ControllerCompra4 } from "../controllers/controllerCompra/controllerCompraCreate"; 
@@ -209,6 +211,7 @@ router.get("/categorypr", findCategoryRelation.handle);
 router.post("/categorypr", createProductCategory.handle);
 router.post("/productwithcategory", createProductCategoryExist.handle);
 router.put("/productwithcategoryput", createProductCategoryExistPut.handle);
+router.get("/producttodos", FindProductRealationTodosList.handle);
 
 /*=================================== ROTA DE USERS =============================*/
 
