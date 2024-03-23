@@ -17,6 +17,8 @@ export class ControllerComentarioUpdate {
       estrela,
       idProduct
     } = request.body;
+
+    //Foi feito umas mudansas aqui
     
     if(
       typeof name === 'number' || 
