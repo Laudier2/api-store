@@ -266,7 +266,11 @@ model Bannes {
 model Comentarios {
   id         String   @id @default(uuid())
   imgName   String
-  image     String[]
+  imageUm     String
+  imageDois     String
+  imageTres     String
+  imageQuantro     String
+  imageSinco     String
   name      String
   message   String
   estrela   String
