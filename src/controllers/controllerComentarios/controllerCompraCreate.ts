@@ -6,11 +6,7 @@ export class ControllerComentario {
     const { 
       name, 
       imgName,
-      imageUm, 
-      imageDois, 
-      imageTres, 
-      imageQuantro, 
-      imageSinco, 
+      image, 
       message,
       estrela,
       idProduct
@@ -18,11 +14,7 @@ export class ControllerComentario {
     
     if(
       typeof name === 'number' || 
-      typeof imageUm === 'number' || 
-      typeof imageDois === 'number' || 
-      typeof imageTres === 'number' || 
-      typeof imageQuantro === 'number' || 
-      typeof imageSinco === 'number' || 
+      typeof image === 'number' || 
       typeof message === 'number' ||
       typeof imgName === 'number' || 
       typeof idProduct === 'number' || 
@@ -35,11 +27,7 @@ export class ControllerComentario {
 
     if(
         typeof name === 'undefined' || 
-        typeof imageUm === 'undefined' ||
-        typeof imageDois === 'undefined' ||
-        typeof imageTres === 'undefined' ||
-        typeof imageQuantro === 'undefined' ||
-        typeof imageSinco === 'undefined' ||
+        typeof image === 'undefined' ||
         typeof message === 'undefined' ||
         typeof imgName === 'undefined' ||
         typeof idProduct === 'undefined' ||
@@ -54,11 +42,7 @@ export class ControllerComentario {
       data: {
         name, 
         imgName,
-        imageUm,
-        imageDois,
-        imageTres,
-        imageQuantro,
-        imageSinco, 
+        image, 
         message,
         estrela,
         idProduct

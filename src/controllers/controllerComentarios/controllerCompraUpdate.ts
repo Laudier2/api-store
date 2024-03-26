@@ -7,11 +7,7 @@ export class ControllerComentarioUpdate {
     const { 
       id,
       name, 
-      imageUm, 
-      imageDois, 
-      imageTres, 
-      imageQuantro, 
-      imageSinco, 
+      image, 
       message,
       imgName,
       estrela,
@@ -21,11 +17,7 @@ export class ControllerComentarioUpdate {
     if(
       typeof name === 'number' || 
       typeof imgName === 'number' || 
-      typeof imageUm === 'number' || 
-      typeof imageDois === 'number' || 
-      typeof imageTres === 'number' || 
-      typeof imageQuantro === 'number' || 
-      typeof imageSinco === 'number' || 
+      typeof image === 'number' || 
       typeof estrela === 'number' || 
       typeof idProduct === 'number' || 
       typeof message === 'number' 
@@ -38,11 +30,7 @@ export class ControllerComentarioUpdate {
     if(
         typeof name === 'undefined' || 
         typeof imgName === 'undefined' ||
-        typeof imageUm === 'undefined' ||
-        typeof imageDois === 'undefined' ||
-        typeof imageTres === 'undefined' ||
-        typeof imageQuantro === 'undefined' ||
-        typeof imageSinco === 'undefined' ||
+        typeof image === 'undefined' ||
         typeof estrela === 'undefined' ||
         typeof idProduct === 'undefined' ||
         typeof message === 'undefined' 
@@ -57,11 +45,7 @@ export class ControllerComentarioUpdate {
       },
       data: {
         name,
-        imageUm, 
-        imageDois, 
-        imageTres, 
-        imageQuantro, 
-        imageSinco,
+        image,
         imgName,
         estrela,
         idProduct,
